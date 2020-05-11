@@ -7,7 +7,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-@Configuration
 public class ResourceConfig implements WebMvcConfigurer {
 
     @Override
@@ -24,19 +23,5 @@ public class ResourceConfig implements WebMvcConfigurer {
         registry.addResourceHandler("/static/**").addResourceLocations("classpath:/static/");
     }
 
-    /*@Bean
-    public  WebMvcConfigurer WebMvcConfigurer(){
-        WebMvcConfigurer adapter = new WebMvcConfigurer() {
-            @Override
-            public void addViewControllers(ViewControllerRegistry registry) {
-                // registry.addViewController("/").setViewName("login");
-                registry.addViewController("/index.html").setViewName("index");
-                registry.addViewController("/checkout.html").setViewName("checkout");
-                //registry.addViewController("/register.html").setViewName("register");
-            }
-
-        };
-        return adapter;
-    }*/
 
 }
