@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportscommodity.commodity.dao.CommodityTypeDao">
+
+    <select id="getTypeAll" resultType="com.znsd.sportsbean.commodity.CommodityType2Domain">
+        select * from commodittype_db
+    </select>
+
+    <delete id="deleteType">
+        DELETE FROM commodittype_db WHERE id=#{commodityid}
+    </delete>
+    <update id="updateType" parameterType="com.znsd.sportsbean.commodity.CommodityType2Domain">
+        UPDATE commodittype_db SET typename=#{typename} where id=#{id}
+    </update>
+    <insert id="insetType">
+        INSERT INTO commodittype_db(`id`,`typename`) VALUES(#{id},#{typename});
+    </insert>
+</mapper>

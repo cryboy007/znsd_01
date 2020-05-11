@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-bean" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-center-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-center-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-commodity" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-commodity/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-image" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-log" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-log/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-mall-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-mall-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-root-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-root-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-user" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-user/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-video" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-video-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-video-web/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/sports-video/src/main/java" charset="UTF-8" />
+  </component>
+</project>

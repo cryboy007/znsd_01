@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Simulor - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}">
+
+    <!-- ION Slider -->
+    <link th:href="@{/css/vendor/ion.rangeSlider.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/vendor/ion.rangeSlider.skinModern.css}" rel="stylesheet" type="text/css"/>
+
+    <!-- App css -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/icons.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/app.min.css}" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}" media="all">
+
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left-side-menu">
+
+        <div class="slimscroll-menu">
+
+            <!-- LOGO -->
+            <a href="index.html" class="logo text-center mb-4">
+                        <span class="logo-lg">
+                            <img th:src="@{/assets/images/logo.png}" alt="" height="20">
+                        </span>
+                <span class="logo-sm">
+                            <img th:src="@{/assets/images/logo-sm.png}" alt="" height="24">
+                        </span>
+            </a>
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+
+                <ul class="metismenu" id="side-menu">
+
+                    <li class="menu-title">Navigation</li>
+
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-layers"></i>
+                            <span> Components </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li>
+                                <a href="/addVideoHtml">上传视频</a>
+                            </li>
+                            <li>
+                                <a href="/dataCenterHtml">数据中心</a>
+                            </li>
+                            <li>
+                                <a href="/commonAdminHtml">评论管理</a>
+                            </li>
+                            <li>
+                                <a href="/moneyAdminHtml">收益管理</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/videoAdminHtml">
+                            <i class="fe-type"></i>
+                            <span>我的稿件 </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-bookmark"></i>
+                            <span class="badge badge-secondary float-right">Hot</span>
+                            <span> Forms </span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li>
+                                <a href="form-elements.html">General Elements</a>
+                            </li>
+                            <li>
+                                <a href="form-advanced.html">Advanced Form</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- End Sidebar -->
+
+            <div class="clearfix"></div>
+
+        </div>
+        <!-- Sidebar -left -->
+
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Topbar Start -->
+            <div class="navbar-custom">
+                <ul class="list-unstyled topbar-right-menu float-right mb-0">
+
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <i class="fe-bell noti-icon"></i>
+                            <span class="badge badge-danger rounded-circle noti-icon-badge">2</span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated dropdown-lg">
+
+                            <!-- item-->
+                            <div class="dropdown-item noti-title">
+                                <h5 class="m-0">
+                                            <span class="float-right">
+                                                <a href="" class="text-dark">
+                                                    <small>Clear All</small>
+                                                </a>
+                                            </span>Notification</h5>
+                            </div>
+
+                            <div class="slimscroll noti-scroll">
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item active">
+                                    <div class="notify-icon">
+                                        <img th:src="@{/assets/images/users/avatar-2.jpg}"
+                                             class="img-fluid rounded-circle" alt=""/></div>
+                                    <p class="notify-details">Cristina Pride</p>
+                                    <p class="text-muted mb-0 user-msg">
+                                        <small>Hi, How are you? What about our next meeting</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-light">
+                                        <i class="mdi mdi-comment-account-outline"></i>
+                                    </div>
+                                    <p class="notify-details">Caleb Flakelar commented on Admin
+                                        <small class="text-muted">1 min ago</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon">
+                                        <img th:src="@{/assets/images/users/avatar-4.jpg}"
+                                             class="img-fluid rounded-circle" alt=""/></div>
+                                    <p class="notify-details">Karen Robinson</p>
+                                    <p class="text-muted mb-0 user-msg">
+                                        <small>Wow ! this admin looks good and awesome design</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-light">
+                                        <i class="mdi mdi-account-plus"></i>
+                                    </div>
+                                    <p class="notify-details">New user registered.
+                                        <small class="text-muted">5 hours ago</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-light">
+                                        <i class="mdi mdi-comment-account-outline"></i>
+                                    </div>
+                                    <p class="notify-details">Caleb Flakelar commented on Admin
+                                        <small class="text-muted">4 days ago</small>
+                                    </p>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <div class="notify-icon bg-light">
+                                        <i class="mdi mdi-heart"></i>
+                                    </div>
+                                    <p class="notify-details">Carlos Crouch liked
+                                        <b>Admin</b>
+                                        <small class="text-muted">13 days ago</small>
+                                    </p>
+                                </a>
+                            </div>
+
+                            <!-- All-->
+                            <a href="javascript:void(0);"
+                               class="dropdown-item text-center text-primary notify-item notify-all">
+                                View all
+                                <i class="fi-arrow-right"></i>
+                            </a>
+
+                        </div>
+                    </li>
+
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle nav-user mr-0" data-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <img th:src="@{/assets/images/users/avatar-1.jpg}" alt="user-image" class="rounded-circle">
+                            <small class="pro-user-name ml-1">
+                                Morgan K
+                            </small>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu-animated profile-dropdown ">
+                            <!-- item-->
+                            <div class="dropdown-header noti-title">
+                                <h6 class="text-overflow m-0">Welcome !</h6>
+                            </div>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-user"></i>
+                                <span>My Account</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-settings"></i>
+                                <span>Settings</span>
+                            </a>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-lock"></i>
+                                <span>Lock Screen</span>
+                            </a>
+
+                            <div class="dropdown-divider"></div>
+
+                            <!-- item-->
+                            <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                <i class="fe-log-out"></i>
+                                <span>Logout</span>
+                            </a>
+
+                        </div>
+                    </li>
+
+                </ul>
+                <button class="button-menu-mobile open-left disable-btn">
+                    <i class="fe-menu"></i>
+                </button>
+                <div class="app-search">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">
+                                    <i class="fe-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- end Topbar -->
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item"><a href="#">Simulor</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Components</a></li>
+                                    <li class="breadcrumb-item active">Range Slider</li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title">Range Slider</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+                <!--上传文件-->
+
+                <div class="layui-upload">
+                    <!--<button type="button" class="layui-btn layui-btn-normal" id="testList">选择视频</button>-->
+                    <button type="button" class="layui-btn layui-btn-normal" id="addVideo">添加视频</button>
+                    <div class="layui-upload-list">
+                        <table class="layui-table">
+                            <thead>
+                            <tr>
+                                <th>视频标签</th>
+                                <th>文件名</th>
+                                <th>大小</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            </thead>
+                            <tr>
+                                <th></th>
+                                <th>文件名</th>
+                                <th>大小</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                            <tbody id="demoList"></tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="layui-btn" id="testListAction" onclick="hint()"
+                            style="margin-left: 40%">立即提交
+                    </button>
+                    <button type="button" class="btn btn-primary" id="testListAction1" style="display:none">
+                        提交图片
+                    </button>
+                </div>
+
+
+                <form class="layui-form" style="display:none" enctype="multipart/form-data" method="post" id="videoForm"
+                      lay-filter="example">
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">视频id：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="collId" th:value="${collId}" th:text="${collId}" lay-verify="title"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">视频标题：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="name" lay-verify="title" autocomplete="off" placeholder="请输入标题"
+                                   class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-upload">
+                        上传视频：<input type="file" class="upload" name="multipartFile" id="test8">
+                    </input>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="collVideo">完成
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+    </div> <!-- container -->
+
+</div> <!-- content -->
+
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+
+<!-- App js -->
+<script th:src="@{/js/vendor.min.js}"></script>
+<script th:src="@{/js/app.min.js}"></script>
+
+<!-- Ion Range Slider-->
+<script th:src="@{/js/vendor/ion.rangeSlider.min.js}"></script>
+<script th:src="@{/js/pages/range-sliders.init.js}"></script>
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+</body>
+<script>
+    layui.use(['layer', 'form'], function () {
+        $("#addVideo").click(function () {
+            layer.open({
+                type: 1,
+                title: "新增",
+                area: ['50%', '50%'],
+                shadeClose: true,
+                content: $("#videoForm"),
+                yes: function (index, layero) {
+                }
+            });
+        })
+    })
+    //图片上传
+    layui.use('upload', function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#test8'
+            , url: '/uploadFile2'
+            , accept: 'file'
+            , exit: 'mp4'
+            , done: function (res) {
+                console.log(res)
+            }
+        });
+    });
+    layui.use(['form', 'upload', 'layer'], function () {
+        var form = layui.form;
+        form.on('submit(demo1)', function (data) {
+            $.ajax({
+                url: '/uploadVideo',
+                type: 'post',
+                data: data.field,
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        })
+    });
+    //提示提交
+    var BCODE;
+
+    function hint() {
+        $.ajax({
+            url: "/inputBill/add",
+            type: 'POST',
+            data: $("#formid").serialize(),
+            // 告诉jQuery不要去处理发送的数据
+            processData: false,
+            // 告诉jQuery不要去设置Content-Type请求头
+            contentType: false,
+            async: true,
+            success: function (data) {
+                BCODE = data;
+                var imgVal = $("#demoList").html();
+                if (imgVal == '') {
+                    location.href = "/inputBill/index";
+                    layer.msg('提交成功');
+                } else {
+                    $("#testListAction1").trigger("click");  //触发上传文件
+                }
+            }
+        });
+    }
+
+    //多图片上传
+
+    layui.use('upload', function () {
+        var $ = layui.jquery
+            , upload = layui.upload;
+        var demoListView = $('#demoList')
+        console.log(demoListView)
+            , uploadListIns = upload.render({
+            elem: '#testList'
+            , url: '/inputBill/Uploadattachment'
+            , acceptMime: 'image/*'
+            , multiple: true
+            , auto: false
+            , bindAction: '#testListAction1'
+            , before: function (obj) { //obj参数包含的信息，跟 choose回调完全一致。其中输入向后台传输的参数
+                this.data = {
+                    'BCODE': BCODE
+                };
+            }
+            , choose: function (obj) {
+                var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+
+                obj.preview(function (index, file, result) {
+                    var tr = $(['<tr id="upload-' + index + '">'
+                        , '<td>' + $("#collId").val() + '</td>'
+                        , '<td>' + $("#name").val() + '</td>'
+                        , '<td>' + file.name + '</td>'
+                        , '<td>' + (file.size / 1014).toFixed(1) + 'kb</td>'
+                        , '<td>等待上传</td>'
+                        , '<td>'
+                        , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">' +
+                        '重传</button>'
+                        , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                        /*    ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">预览</button>'*/
+                        , '</td>'
+                        , '</tr>'].join(''));
+
+                    //单个重传
+                    tr.find('.demo-reload').on('click', function () {
+                        obj.upload(index, file);
+                    });
+
+                    //删除
+                    tr.find('.demo-delete').on('click', function () {
+                        delete files[index]; //删除对应的文件
+                        tr.remove();
+                        uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                    });
+                    //预览
+                    demoListView.append(tr);
+                });
+            }
+            , done: function (res, index, upload) {
+                if (res.return_code == 1) { //上传成功
+                    var tr = demoListView.find('tr#upload-' + index)
+                        , tds = tr.children();
+                    tds.eq(1).html('<span style="color: #5FB878;">上传成功</span>');
+                    tds.eq(2).html(''); //清空操作
+                    return delete this.files[index]; //删除文件队列已经上传成功的文件
+                }
+                this.error(index, upload);
+            }
+            , allDone: function (obj) { //当文件全部被提交后，才触发
+                layer.msg('保存成功！', {
+                    time: 2000, //2s后自动关闭
+                    btn: ['确定']
+                });
+                location.href = "/inputBill/index";
+            }
+            , error: function (index, upload) {
+                var tr = demoListView.find('tr#upload-' + index)
+                    , tds = tr.children();
+                tds.eq(1).html('<span style="color: #FF5722;">上传失败</span>');
+                tds.eq(2).find('.demo-reload').removeClass('layui-hide'); //显示重传
+            }
+        });
+    });
+
+</script>
+
+</html>

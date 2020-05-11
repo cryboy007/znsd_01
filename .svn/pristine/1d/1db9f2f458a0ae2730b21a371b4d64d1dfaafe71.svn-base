@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:javastript="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>Bootstrap HelloWorld</title>
+
+		<!-- Bootstrap -->
+		<link href="../static/css/bootstrap.min.css" rel="stylesheet">
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="../static/js/jquery-3.5.1.min.js"></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+		<script src="../static/js/bootstrap.min.js"></script>
+
+</head>
+
+<style>
+	.head{
+		background-color: whitesmoke;
+		text-decoration:none;
+		width: 100%;
+		position: absolute;
+		top: 0px;
+		text-align: right;
+		padding-right: 140px;
+		letter-spacing : 2pt;
+		line-height: 50px;
+	}
+	.head a{
+		color: #000000;
+	}
+	a:link,a:visited{
+	 text-decoration:none;  /*超链接无下划线*/
+	}
+	a:hover{
+		color: red;
+	}
+	.media-body{
+		width: 1200px;
+		height: 700px;
+		display: flex;
+		position: relative;
+		left: 9%;
+	}
+	.media-body #boder_left{
+		background-color: whitesmoke;
+		width: 14%;
+		height: 400px;
+		margin: 10px;
+		margin-left:25px ;
+	}
+	ul{
+		text-align: center;
+		list-style-type:none;
+		margin: 0px;
+		padding: 0px;
+	}
+	li{
+		list-style-type:none;
+	}
+	.li_head{
+		text-align: center;
+		height: 60px;
+		padding-top: 23px;
+		border-bottom:#A6E1EC 0.0625rem solid;
+	}
+	.li_head a{
+		color: #A94442;
+	}
+	ul li + li{
+		padding-top: 5px;
+		line-height: 30px;
+		border-bottom: #A6E1EC 0.5px solid;
+	}
+	ul li a{
+		color: #000000;
+	}
+	ul li ul li a{
+		color: #8C8C8C;
+	}
+	.center_left_image {
+		margin-top: 25px;
+	}
+	#center_right{
+		background-color: whitesmoke;
+		margin-top: 20px;
+		height: 675px;
+		width: 850px;
+	}
+	.center_right_one{
+		padding-top:10px;
+		padding-left: 23px;
+		height: 60px;
+		width: 800px;
+		border-bottom: #ADADAD 1px solid;
+	}
+	
+	.center_right_two{
+		margin-top: 5px;
+		height: 200px;
+	}
+	.center_right_two li{
+		background: url(../static/img/image/peraddbg.png) no-repeat 100% 100%;
+		margin: 13px;
+		float: left;
+		height: 78%;
+		width: 30%;
+	}
+	.center_right_two p{
+		height: 30px;
+	}
+	.center_p_one{
+		margin-left: 13px;
+		text-align: left;
+	}
+	.center_p_two{
+		text-align: left;
+		margin-left: 13px;
+	}
+	.center_right_three{
+		height: 300px;
+	}
+	.center_right_four{
+		letter-spacing: 3px;
+		margin-top: 25px;
+		padding-right: 23px;
+		text-align: right;
+		height: 30px;
+	}
+	.from_div{
+		margin-top: 23px;
+		height: 30px;
+	}
+	.from_div label{
+		float: left;
+		margin-left: 90px;
+	}
+	.from_div input{
+		width: 40%;
+		margin-left: 10%;
+		float: left;
+	}
+	
+	.from_div_address{
+		margin-top: 23px;
+		height: 30px;
+	}
+	.from_div_address label{
+		float: left;
+		margin-left: 90px;
+	}
+	.from_div_address textarea{
+		width: 40%;
+		margin-left: 8%;
+		float: left;
+	}
+	
+	.center_right_last{
+		margin-top: 15%;
+		text-align: center;
+	}
+	
+</style>
+
+<body>
+	<div class="page-header">
+		<div class="head">
+			<a href="#">商城首页</a>
+			<a href="index.html">个人中心</a>
+		</div>
+	</div>
+	
+	<div class="media-body">
+		<div class="media_body_left">
+			<img src="../static/img/image/right_1.png" />
+		</div>
+	
+		<div id="boder_left">
+			<div> 
+				<ul>
+					<li class="li_head">
+						<a href="index.html"> 个人中心 </a>
+					</li>
+					
+					<li>
+						<span> 个人资料 </span>
+						<ul>
+							<li>
+								<a href="personalData.html">个人信息</a>
+							</li>
+							
+							<li>
+								<a href="receivingAddress.html">收货地址</a>
+							</li>
+						</ul>
+					</li>
+					
+					<li>
+						<span> 我的交易 </span>
+						<ul>
+							<li>
+								<a href="order.html">订单管理</a>
+							</li>
+							
+							<li>
+								<a href="change.html">售后</a>
+							</li>
+						</ul>
+					</li>
+					
+					<li>
+						<span> 我的小窝 </span>
+						<ul>
+							<li>
+								<a href="subscribe.html">订阅</a>
+							</li>
+							<li>
+								<a href="collection.html">收藏</a>
+							</li>
+							<li>
+								<a href="history.html">足迹</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="center_left_image">
+				<img src="../static/img/image/life.png" width="100%" height="100%"/>
+			</div>
+		</div>
+		
+		<div id="center_right">
+			<div class="center_right_one">
+				<h4>地址管理/ <small>Address management</small></h4>
+			</div>
+			<!-- 读取的地址 -->
+			<ul class="center_right_two">
+				<li>
+					<span>设为默认</span>
+					<p class="center_p_one">
+						<span><img src="../static/img/image/addicon1.png"/>大玩家</span>
+						<span><img src="../static/img/image/addicon2.png"/>123*****321</span>
+					</p>
+					<div class="center_right_three">
+						<p class="center_p_one">
+						<img src="../static/img/image/addicon.png"/>
+							<span>地址：</span>
+							<span>地球村中国广东省深圳市坪山区坑梓街道智能时代学院</span>
+						</p>
+						<div class="center_right_four">
+							<a href="javastript:void(0);" onclick="modifyClick(this);">编辑</a>
+							<span>|</span>
+							<a href="javastript:void(0);" onclick="delClick(this);">删除</a>
+						</div>
+					</div>
+					
+				</li>
+				
+				<li>2</li>
+				
+				<li>3</li>
+			</ul>
+		
+			<div class="center_right_one">
+				<h4>新增地址/ <small>New address</small></h4>
+			</div>
+			<div class="center_right_three">
+				<form>
+					<div class="from_div">
+						<label>收货人：</label>
+						<div>
+							<input type="text" placeholder="收货人"/>
+						</div>
+					</div>
+					
+					<div class="from_div">
+						<label >手机号：</label>
+						<div>
+							<input type="text" placeholder="手机号必填"/>
+						</div>
+					</div>
+					
+					<div class="from_div_address">
+						<label>收货地址：</label>
+						<div>
+							<textarea rows="5" placeholder="请50字以内写出你的详细地址">
+							</textarea>
+						</div>
+					</div>
+					<div class="center_right_last">
+						<button type="submit">保存</button>
+						<button type="submit" javastript:void(0)>取消</button>
+					</div>
+				</form>
+				
+			</div>
+		</div>
+		</div>
+		<div>
+			<img src="../static/img/image/dibu2.png" width="100%"/>
+		</div>
+</body>
+</html>

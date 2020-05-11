@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportscommodity.order.dao.OrderDbDao">
+
+    <resultMap type="com.znsd.sportsbean.commodity.OrderDomain" id="OrderDbMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="userId" column="userid" jdbcType="VARCHAR"/>
+        <result property="commodityId" column="commodityid" jdbcType="VARCHAR"/>
+        <result property="status" column="status" jdbcType="INTEGER"/>
+        <result property="times" column="times" jdbcType="TIMESTAMP"/>
+        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="sum" column="sum" jdbcType="NUMERIC"/>
+        <result property="number" column="number" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrderDbMap">
+        select
+        id, userid, commodityid, status, times, address, sum, number
+        from sports_online.order_db
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrderDbMap">
+        select
+        id, userid, commodityid, status, times, address, sum, number
+        from sports_online.order_db
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OrderDbMap">
+        select
+        id, userid, commodityid, status, times, address, sum, number
+        from sports_online.order_db
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="userid != null and userid != ''">
+                and userid = #{userId}
+            </if>
+            <if test="commodityid != null and commodityid != ''">
+                and commodityid = #{commodityId}
+            </if>
+            <if test="status != null">
+                and status = #{status}
+            </if>
+            <if test="times != null">
+                and times = #{times}
+            </if>
+            <if test="address != null and address != ''">
+                and address = #{address}
+            </if>
+            <if test="sum != null">
+                and sum = #{sum}
+            </if>
+            <if test="number != null">
+                and number = #{number}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into sports_online.order_db
+        values (#{id},#{userId}, #{commodityId}, #{status}, #{times}, #{address}, #{sum}, #{number})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update sports_online.order_db
+        <set>
+            <if test="userid != null and userid != ''">
+                userid = #{userId},
+            </if>
+            <if test="commodityid != null and commodityid != ''">
+                commodityid = #{commodityId},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            <if test="times != null">
+                times = #{times},
+            </if>
+            <if test="address != null and address != ''">
+                address = #{address},
+            </if>
+            <if test="sum != null">
+                sum = #{sum},
+            </if>
+            <if test="number != null">
+                number = #{number},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from sports_online.order_db where id = #{id}
+    </delete>
+
+
+    <select id="queryOrder" resultMap="queryOrderAndCommmodityAndType">
+        SELECT
+        o.id oid,o.userid ouserid,o.commodityid ocommodityid,o.status ostatus,o.times otimes,o.address oaddress,o.sum
+        osum,o.number onumber,
+        u.id uid,u.name uname,u.username uusername,u.password upassword,u.email uemail,u.gender ugender,u.typeid
+        utypeid,u.image uimage,
+        u.money umoney,u.integral uintegral,u.status ustatus,u.birthday ubirthday,c.*,t.id tid,t.typename ttypename
+        FROM order_db o,user_db u ,commodity_db c,commodittype_db t WHERE o.`commodityid`= c.`id`
+        AND c.`typeid`=t.`id` AND o.userid=u.id
+    </select>
+
+
+    <select id="queryOrderName" resultMap="queryOrderAndCommmodityAndType">
+        SELECT
+        o.id oid,o.userid ouserid,o.commodityid ocommodityid,o.status ostatus,o.times otimes,o.address oaddress,o.sum
+        osum,o.number onumber,
+        u.id uid,u.name uname,u.username uusername,u.password upassword,u.email uemail,u.gender ugender,u.typeid
+        utypeid,u.image uimage,
+        u.money umoney,u.integral uintegral,u.status ustatus,u.birthday ubirthday,c.*,t.id tid,t.typename ttypename
+        FROM
+        order_db o,user_db u ,commodity_db c,commodittype_db t
+        WHERE o.`commodityid`= c.`id`
+        AND c.`typeid`=t.`id` AND o.userid=u.id and u.name=#{username}
+    </select>
+
+    <select id="queryOrderId" resultMap="queryOrderAndCommmodityAndType">
+        SELECT
+        o.id oid,o.userid ouserid,o.commodityid ocommodityid,o.status ostatus,o.times otimes,o.address oaddress,o.sum
+        osum,o.number onumber,
+        u.id uid,u.name uname,u.username uusername,u.password upassword,u.email uemail,u.gender ugender,u.typeid
+        utypeid,u.image uimage,
+        u.money umoney,u.integral uintegral,u.status ustatus,u.birthday ubirthday,c.*,t.id tid,t.typename ttypename
+        FROM
+        order_db o,user_db u ,commodity_db c,commodittype_db t WHERE o.`commodityid`= c.`id`
+        AND c.`typeid`=t.`id` AND o.userid=u.id and o.userid=#{userId}
+    </select>
+
+    <resultMap id="queryOrderAndCommmodityAndType" type="com.znsd.sportsbean.commodity.OrderDomain">
+        <result property="id" column="oid"/>
+        <result property="userId" column="ouserid"/>
+        <result property="commodityId" column="ocommodityid"/>
+        <result property="status" column="ostatus"/>
+        <result property="times" column="otimes"/>
+        <result property="address" column="oaddress"/>
+        <result property="sum" column="osum"/>
+        <result property="number" column="onumber"/>
+        <association property="userDomain" javaType="com.znsd.sportsbean.user.UserDomain">
+            <result property="id" column="uid"/>
+            <result property="name" column="uname"/>
+            <result property="username" column="uusername"/>
+            <result property="password" column="upassword"/>
+            <result property="email" column="uemail"/>
+            <result property="gender" column="ugender"/>
+            <result property="age" column="uage"/>
+            <result property="typeid" column="utypeid"/>
+            <result property="image" column="uimage"/>
+            <result property="money" column="umoney"/>
+            <result property="integral" column="uintegral"/>
+            <result property="status" column="ustatus"/>
+            <result property="birthday" column="ubirthday"/>
+        </association>
+        <association property="commodityDomain" javaType="com.znsd.sportsbean.commodity.CommodityDomain">
+            <result property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="bewrite" column="bewrite"/>
+            <result property="price" column="price"/>
+            <result property="inventory" column="inventory"/>
+            <result property="sales" column="sales"/>
+            <result property="image" column="image"/>
+            <result property="sum" column="sum"/>
+            <result property="typeId" column="typeid"/>
+        </association>
+        <association property="commodityTypeDomain">
+            <result property="commodityid" column="tid"/>
+            <result property="typeName" column="ttypename"/>
+        </association>
+    </resultMap>
+</mapper>

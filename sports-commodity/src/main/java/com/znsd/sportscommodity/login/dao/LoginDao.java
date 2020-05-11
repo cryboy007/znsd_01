@@ -1,0 +1,7 @@
+package com.znsd.sportscommodity.login.dao;
+
+import com.znsd.sportsbean.user.UserDomain;
+
+public interface LoginDao {
+    public UserDomain queryLogin(String userName, String password);
+}

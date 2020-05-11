@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportsuser.Mapper.UserMapper">
+
+    <sql id="addUser">
+        <trim prefix="," suffixOverrides=",">
+            <if test="image != null and image != ''">
+                image
+            </if>
+        </trim>
+    </sql>
+
+    <sql id="userValue">
+        <trim prefix="," suffixOverrides=",">
+            <if test="image != null and image != ''">
+                #{image}
+            </if>
+        </trim>
+    </sql>
+
+    <insert id="addUser" parameterType="UserDomain">
+
+        insert into sports_online.user_db
+        (
+        id, name, username, password, email, gender, birthday
+        <include refid="addUser"/>
+        )
+        values (
+        #{id},#{name},#{username},#{password},#{email},#{gender},#{birthday}
+        <include refid="userValue"></include>
+        )
+    </insert>
+
+
+    <select id="queryUser" parameterType="String" resultType="UserDomain">
+        select * from sports_online.user_db where id = #{id};
+    </select>
+
+    <select id="queryAll" resultType="UserDomain">
+        select * from sports_online.user_db;
+    </select>
+
+    <select id="queryName" resultType="UserDomain">
+        select * from sports_online.user_db where username like #{value} or name like #{value};
+    </select>
+
+
+    <select id="fenYe" resultType="UserDomain">
+        select * from user_db
+    </select>
+
+
+    <select id="fuzzyQuery" resultType="UserDomain">
+        select * from sports_online.user_db where username like #{value} or name like #{value}
+    </select>
+
+
+
+    <update id="updateUser" parameterType="UserDomain">
+        update sports_online.user_db
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+
+            <if test="password != null and password != ''">
+                password = #{password},
+            </if>
+
+            <if test="email != null and email != ''">
+                email = #{email},
+            </if>
+
+            <if test="gender != null and gender != ''">
+                gender = #{gender},
+            </if>
+
+            <if test="typeid != null and typeid != ''">
+                typeid = #{typeid},
+            </if>
+
+            <if test="image != null and image != ''">
+                image = #{image},
+            </if>
+
+            <if test="money != null and money != ''">
+                money = #{money},
+            </if>
+
+            <if test="integral != null and integral != ''">
+                integeral = #{integeral},
+            </if>
+
+            <if test="status != null and status != ''">
+                status = #{status},
+            </if>
+
+            <if test="birthday != null and birthday != ''">
+                birthday = #{birthday},
+            </if>
+        </set>
+        where id = #{id};
+    </update>
+
+    <delete id="deleteUser" parameterType="String">
+        delete from sports_online.user_db where id = #{id};
+    </delete>
+
+
+    <select id="sigInUser" resultType="com.znsd.sportsbean.user.UserDomain">
+        select * from user_db where username = #{username} and password = #{password};
+    </select>
+
+        <update id="updateMoney">
+            update sports_online.user_db set money=#{money} where id=#{userId}
+        </update>
+</mapper>

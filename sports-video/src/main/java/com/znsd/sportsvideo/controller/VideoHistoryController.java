@@ -1,0 +1,27 @@
+package com.znsd.sportsvideo.controller;
+
+import com.znsd.sportsbean.video.VideoHistoryDomain;
+import com.znsd.sportsvideo.service.VideoHistoryService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+@Controller
+public class VideoHistoryController {
+    @Autowired
+    private VideoHistoryService videoHistoryService;
+
+    /**
+     * 添加历史记录
+     *
+     * @param videoHistoryDomain
+     */
+    @GetMapping("/insertHistory")
+    @ResponseBody
+    public VideoHistoryDomain insertHistory(VideoHistoryDomain videoHistoryDomain) {
+        return videoHistoryService.insertHistory(videoHistoryDomain);
+    }
+
+
+}

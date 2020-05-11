@@ -1,0 +1,144 @@
+package com.znsd.sportscommodity.commodity.service.impl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.znsd.sportsbean.commodity.CommodityAndTypeDomain;
+import com.znsd.sportsbean.commodity.CommodityAndVideoDomain;
+import com.znsd.sportsbean.commodity.CommodityDomain;
+import com.znsd.sportsbean.commodity.CommodityType2Domain;
+import com.znsd.sportsbean.video.VideoDomain;
+import com.znsd.sportscommodity.commodity.dao.CommodityDbDao;
+import com.znsd.sportscommodity.commodity.service.CommodityDbService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * (CommodityDb)表服务实现类
+ *
+ * @author makejava
+ * @since 2020-05-04 14:51:30
+ */
+@Service
+public class CommodityDbServiceImpl implements CommodityDbService {
+    @Resource
+    private CommodityDbDao commodityDbDao;
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param id 主键
+     * @return 实例对象
+     */
+    @Override
+    public CommodityDomain queryById(String id) {
+        return this.commodityDbDao.queryById(id);
+    }
+
+    /**
+     * 查询多条数据
+     *
+     * @param page 查询起始位置
+     * @param limit 查询条数
+     * @return 对象列表
+     */
+    @Override
+    public PageInfo<CommodityDomain> queryAllByLimit(int page, int limit) {
+        PageHelper.startPage(page, limit);
+        PageInfo<CommodityDomain> pagelist = new PageInfo(this.commodityDbDao.queryAllByLimit());
+        return pagelist;
+    }
+
+    /**
+     * 新增数据
+     *
+     * @param commodityDb 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public CommodityDomain insert(CommodityDomain commodityDb) {
+        this.commodityDbDao.insert(commodityDb);
+        return commodityDb;
+    }
+
+    /**
+     * 修改数据
+     *
+     * @param commodityDomain 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public CommodityDomain update(CommodityDomain commodityDomain) {
+        this.commodityDbDao.update(commodityDomain);
+        return this.queryById(commodityDomain.getId());
+    }
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param id 主键
+     * @return 是否成功
+     */
+    @Override
+    public boolean deleteById(String id) {
+        return this.commodityDbDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<CommodityAndTypeDomain> querycommodityDomain() {
+        return this.commodityDbDao.querycommodityDomain();
+    }
+
+    @Override
+    public List<CommodityDomain> queryName(String name) {
+        return this.commodityDbDao.queryName(name);
+    }
+
+    @Override
+    public PageInfo<CommodityAndTypeDomain> querycommodityTypeDomainByLimit(int page, int limit) {
+        PageHelper.startPage(page, limit);
+        PageInfo<CommodityAndTypeDomain> pagelist = new PageInfo<>(this.commodityDbDao.querycommodityTypeDomainByLimit());
+        return pagelist;
+    }
+
+    @Override
+    public PageInfo<CommodityAndTypeDomain> queryTypeCommodity(String typeId,int page,int limit) {
+        PageHelper.startPage(page, limit);
+        PageInfo<CommodityAndTypeDomain> pagelist = new PageInfo<>(this.commodityDbDao.queryTypeCommodity(typeId));
+        return pagelist;
+    }
+
+    @Override
+    public PageInfo<CommodityAndTypeDomain> querycommodityTypeDomainByLimit2(int page, int limit) {
+        PageHelper.startPage(page,limit);
+        List<CommodityAndTypeDomain> list= commodityDbDao.querycommodityTypeDomainByLimit2();
+        PageInfo<CommodityAndTypeDomain> pagelist = new PageInfo<>(list);
+        return pagelist;
+    }
+
+    @Override
+    public PageInfo<CommodityAndTypeDomain> getNameLimit(String name, int page, int limit) {
+        PageHelper.startPage(page, limit);
+        PageInfo<CommodityAndTypeDomain> pagelist = new PageInfo<>(this.commodityDbDao.getNameLimit(name));
+        return pagelist;
+    }
+
+    @Override
+    public CommodityAndTypeDomain queryCommodityAndType(String id) {
+        return this.commodityDbDao.queryCommodityAndType(id);
+    }
+
+    @Override
+    public List<CommodityAndTypeDomain> queryTypeCommodityAll(String typeId) {
+        return this.commodityDbDao.queryTypeCommodity(typeId);
+    }
+
+    /**
+     * 添加商品视频中间表
+     * @param videoDomain
+     */
+    public void insertVideo(CommodityAndVideoDomain commodityAndVideoDomain){
+        this.commodityDbDao.insertVideo(commodityAndVideoDomain);
+    };
+}

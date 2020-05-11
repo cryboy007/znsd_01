@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Simulor - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}">
+
+    <!-- ION Slider -->
+    <link th:href="@{/css/vendor/ion.rangeSlider.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/vendor/ion.rangeSlider.skinModern.css}" rel="stylesheet" type="text/css"/>
+
+    <!-- App css -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/icons.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/css/app.min.css}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}"  media="all">
+
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left-side-menu">
+
+        <div class="slimscroll-menu">
+
+            <!-- LOGO -->
+            <a href="index.html" class="logo text-center mb-4">
+                        <span class="logo-lg">
+                            <img th:src="@{/assets/images/logo.png}" alt="" height="20">
+                        </span>
+                <span class="logo-sm">
+                            <img th:src="@{/assets/images/logo-sm.png}" alt="" height="24">
+                        </span>
+            </a>
+
+            <div id="sidebar-menu">
+
+                <ul class="metismenu" id="side-menu">
+                    <li>
+                        <a href="/addVideoHtml">上传视频</a>
+                    </li>
+                    <li>
+                        <a href="/dataCenterHtml">数据中心</a>
+                    </li>
+                    <li>
+                        <a href="/commonAdminHtml">评论管理</a>
+                    </li>
+                    <li>
+                        <a href="/videoAdminHtml">
+                            <span>我的稿件 </span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class="clearfix"></div>
+
+        </div>
+        <!-- Sidebar -left -->
+
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+
+                            <h4 class="page-title">Range Slider</h4>
+                        </div>
+                    </div>
+                </div>
+                <!-- end page title -->
+              <!--  <div class="layui-upload">
+                    上传视频：<input type="file"  class="upload" name="multipartFile" id="test8">
+                </input>
+                </div>
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn" id="test1" name="multipartFile">上传图片</button>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" id="demo1">
+                        <p id="demoText"></p>
+                    </div>
+                </div>-->
+                <!--上传文件-->
+
+                <form action="/updateVideo" method="post" class="layui-form" id="collForm" enctype="multipart/form-data"  lay-filter="example">
+                    <input type="hidden" name="id" th:value="${videoDomain.id}">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">视频标题：</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="name" lay-verify="title" autocomplete="off" class="layui-input" th:value="${videoDomain.name!=null?videoDomain.name:''}">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">视频类型：</label>
+                        <div class="layui-input-block">
+                            <select name="typeId" id="type" lay-verify="required" lay-filter="xmFilter">
+                                <option th:text="${videoDomain.typeId}">请选择类型</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">价格</label>
+                            <div class="layui-input-inline" style="width: 100px;">
+                                <input type="text" name="price" placeholder="￥" autocomplete="off" class="layui-input"  th:value="${videoDomain.price}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-inline">
+                            <label class="layui-form-label">积分</label>
+                            <div class="layui-input-inline" style="width: 100px;">
+                                <input type="number" name="integral" autocomplete="off" class="layui-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item layui-form-text">
+                        <label class="layui-form-label">简介：</label>
+                        <div class="layui-input-block">
+                            <textarea placeholder="请输入内容" class="layui-textarea" name="dec" th:text="${videoDomain.dec !=null ? videoDomain.dec:''}"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="collSubmit">提交</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+    </div> <!-- container -->
+
+</div> <!-- content -->
+
+</div>
+
+<!-- ============================================================== -->
+<!-- End Page content -->
+<!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+
+
+<!-- App js -->
+<script th:src="@{/js/vendor.min.js}"></script>
+<script th:src="@{/js/app.min.js}"></script>
+
+<!-- Ion Range Slider-->
+<script th:src="@{/js/vendor/ion.rangeSlider.min.js}"></script>
+<script th:src="@{/js/pages/range-sliders.init.js}"></script>
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+</body>
+<script>
+
+    $(function(){
+        //图片上传
+        layui.use('upload', function(){
+            var $ = layui.jquery
+                ,upload = layui.upload;
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test1'
+                ,url: '/uploadFile'
+                ,before: function(obj){
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function(index, file, result){
+                        $('#demo1').attr('src', result); //图片链接（base64）
+                    });
+                }
+            });
+            var $ = layui.jquery
+                ,upload = layui.upload;
+            //普通图片上传
+            var uploadInst = upload.render({
+                elem: '#test8'
+                ,url: '/uploadFile2'
+                ,accept:'file'
+                ,exit:'mp4'
+                ,done: function(res){
+                    console.log(res)
+                }
+            });
+        });
+        layui.use(['form', 'upload', 'layer'], function () {
+            var form = layui.form;
+            //检查项目添加到下拉框中
+            $.ajax({
+                url: '/findType',
+                dataType: 'json',
+                type: 'post',
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        $('#type').append(new Option(item.typeName, item.id));// 下拉菜单里添加元素
+                    });
+                    layui.form.render("select");
+                    //重新渲染 固定写法
+                }
+            });
+           /* form.on('submit(demo1)', function (data) {
+                $.ajax({
+                    url:'/updateVideo',
+                    type:'post',
+                    dataType:"json",
+                    success:function(data){
+                    }
+                });
+            })*/
+        });
+    });
+
+</script>
+
+</html>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportscommodity.shoppingcart.dao.ShoppingcartDbDao">
+
+
+    <!--查询单个-->
+    <select id="queryById" resultType="com.znsd.sportsbean.commodity.ShoppingDomain">
+        select
+        id, userid, commodityid, number
+        from sports_online.shoppingcart_db
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit">
+        select
+        id, userid, commodityid, number
+        from sports_online.shoppingcart_db
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll">
+        select
+        id, userid, commodityid, number
+        from sports_online.shoppingcart_db
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="userId != null and userId != ''">
+                and userid = #{userId}
+            </if>
+            <if test="commodityid != null and commodityid != ''">
+                and commodityid = #{commodityid}
+            </if>
+            <if test="number != null">
+                and number = #{number}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into sports_online.shoppingcart_db(id,userid, commodityid, number)
+        values (#{id},#{userId}, #{commodityid}, #{number})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update sports_online.shoppingcart_db
+        <set>
+            <if test="userId != null and userId != ''">
+                userid = #{userId},
+            </if>
+            <if test="commodityid != null and commodityid != ''">
+                commodityid = #{commodityid},
+            </if>
+            <if test="number != null">
+                number = #{number},
+            </if>
+        </set>
+        where id=#{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from sports_online.shoppingcart_db where id = #{id}
+    </delete>
+
+
+    <select id="getUserCommodity" resultMap="getUserCommodity">
+        SELECT * FROM commodity_db c ,shoppingcart_db s WHERE c.`id`=s.`commodityid` AND s.`userid`=#{userId}
+    </select>
+    <resultMap id="getUserCommodity" type="com.znsd.sportsbean.commodity.ShoppingDomain">
+        <result property="id" column="id"/>
+        <result property="userId" column="userId"/>
+        <result property="commodityid" column="commodityid"/>
+        <result property="number" column="number"/>
+        <collection property="list" javaType="List" ofType="com.znsd.sportsbean.commodity.CommodityDomain">
+            <result property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="bewrite" column="bewrite"/>
+            <result property="price" column="price"/>
+            <result property="inventory" column="inventory"/>
+            <result property="sales" column="sales"/>
+            <result property="image" column="image"/>
+            <result property="sum" column="sum"/>
+            <result property="typeId" column="typeid"/>
+        </collection>
+    </resultMap>
+</mapper>

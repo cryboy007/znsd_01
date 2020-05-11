@@ -1,0 +1,54 @@
+package com.znsd.sportsvideoweb.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class WebController {
+
+    @GetMapping("/addVideoHtml")
+    public String addVideoHtml() {
+        return "addVideo";
+    }
+
+    @GetMapping("/addVideoHtml2")
+    public String addVideoHtml2() {
+        return "addVideo2";
+    }
+
+    @GetMapping("/commonAdminHtml")
+    public String commonAdminHtml() {
+        return "commonAdmi";
+    }
+
+    @GetMapping("/dataCenterHtml")
+    public String dataCenterHtml() {
+        return "dataCenter";
+    }
+
+    @GetMapping("/indexHtml")
+    public String indexHtml() {
+        return "index";
+    }
+
+    @GetMapping("/videoAdminHtml")
+    public String videoAdminHtml() {
+        return "videoAdmin";
+    }
+
+    @GetMapping("/moneyAdminHtml")
+    public String moneyAdminHtml() {
+        return "moneyAdmin";
+    }
+
+    @GetMapping("/playVideoHtml")
+    public String playVideoHtml() {
+        return "playVideo";
+    }
+
+    @GetMapping("/startVideoHtml")
+    public String startVideoHtml() {
+        return "startVideo";
+    }
+
+}

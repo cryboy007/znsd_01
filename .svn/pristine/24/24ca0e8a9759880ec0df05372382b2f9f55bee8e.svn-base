@@ -1,0 +1,564 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2fd204c7-050a-4394-b2a9-65bf13cf5ec4" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sports-user/src/main/java/com/znsd/sportsuser/Controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/sports-user/src/main/java/com/znsd/sportsuser/Controller/UserController.java" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
+        <option name="localRepository" value="F:\repository" />
+        <option name="mavenHome" value="F:/apache-maven-3.6.3" />
+        <option name="usePluginRegistry" value="true" />
+        <option name="userSettingsFile" value="F:\apache-maven-3.6.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+        <option name="jdkForImporter" value="1.8" />
+        <option name="vmOptionsForImporter" value="-Xmx1024m" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="#JAVA_HOME" />
+  </component>
+  <component name="ProjectId" id="1bOcKXl938KMp0PWAPmr2yeke67" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="2" id="Remove" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last.edited.regexp" value="Sample Text" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/sports-mall-web/src/main/resources/static" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15537849" />
+    <property name="project.structure.side.proportion" value="0.20056899" />
+    <property name="restartRequiresConfirmation" value="false" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\sports\sports-online\sports-mall-web\src\main\java\com\znsd\sportsmallweb\commodity\dao" />
+      <recent name="F:\sports\sports-online\sports-mall-web\src\main\java\com\znsd\sportsmallweb\getType\dao" />
+      <recent name="F:\sports\sports-online\sports-mall-web\src\main\resources\mapper" />
+      <recent name="F:\sports\sports-online\sports-mall-web\src\main\resources" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.znsd.sportsmallweb.url.config" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\sports\sports-online\sports-mall-web\src\main\resources\static" />
+      <recent name="F:\sports\sports-online\sports-mall-web\src\main\resources\templates" />
+      <recent name="F:\sports\sports-online\sports-commodity\src\main\resources" />
+      <recent name="F:\sports\sports-online\sports-commodity\src\main\java\com\znsd\sportscommodity" />
+      <recent name="F:\sports\sports-online\sports-mall-web\src\main\java\com\znsd\sportsmallweb\getType\dao" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.SportsMallWebApplication">
+    <configuration name="SportsMallWebApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="sports-mall-web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.znsd.sportsmallweb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.znsd.sportsmallweb" />
+      <option name="MAIN_CLASS_NAME" value="com.znsd.sportsmallweb.SportsMallWebApplicationTests" />
+      <option name="METHOD_NAME" value="contextLoads" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Java Scratch">
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType" factoryName="Kotlin">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <option name="ALTERNATIVE_JRE_PATH" value="1.8" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <module name="" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="sports-video-web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.znsd.videoweb.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.videoweb.Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SportsBeanApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sports-bean" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.sportsbean.SportsBeanApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SportsCenterWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sports-center-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.sportscenterweb.SportsCenterWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SportsCommodityApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sports-commodity" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.sportscommodity.SportsCommodityApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SportsImageApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sports-image" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.sportsimage.SportsImageApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SportsLogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sports-log" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.sportslog.SportsLogApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SportsMallWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sports-mall-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.sportsmallweb.SportsMallWebApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="UPDATE_ACTION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SportsRootWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sports-root-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.sportsrootweb.SportsRootWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SportsUserApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sports-user" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.sportsuser.SportsUserApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SportsVideoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sports-video" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.sportsvideo.SportsVideoApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SportsVideoWebApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="sports-video-web" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.znsd.sportsvideoweb.SportsVideoWebApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.SportsMallWebApplicationTests.contextLoads" />
+      <item itemvalue="Spring Boot.SportsBeanApplication" />
+      <item itemvalue="Spring Boot.SportsCenterWebApplication" />
+      <item itemvalue="Spring Boot.SportsCommodityApplication" />
+      <item itemvalue="Spring Boot.SportsImageApplication" />
+      <item itemvalue="Spring Boot.SportsLogApplication" />
+      <item itemvalue="Spring Boot.SportsMallWebApplication" />
+      <item itemvalue="Spring Boot.SportsRootWebApplication" />
+      <item itemvalue="Spring Boot.SportsUserApplication" />
+      <item itemvalue="Spring Boot.SportsVideoApplication" />
+      <item itemvalue="Spring Boot.SportsVideoWebApplication" />
+      <item itemvalue="Spring Boot.Application" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SportsMallWebApplicationTests.contextLoads" />
+        <item itemvalue="Spring Boot.Application" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9311430d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9311430d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@e38aef9f" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+            <path>
+              <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@9311430d" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+              <item name="com.intellij.execution.services.ServiceModel$ServiceGroupNode@43ecd060" type="7427dc5b:ServiceModel$ServiceGroupNode" />
+            </path>
+          </expand>
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\AIERXUAN\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="SvnFileUrlMappingImpl">
+    <option name="myMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\sports\sports-online" />
+          <option name="myCopyRoot" value="F:\sports\sports-online" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+    <option name="myMoreRealMappingRoots">
+      <list>
+        <SvnCopyRootSimple>
+          <option name="myVcsRoot" value="F:\sports\sports-online" />
+          <option name="myCopyRoot" value="F:\sports\sports-online" />
+        </SvnCopyRootSimple>
+      </list>
+    </option>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2fd204c7-050a-4394-b2a9-65bf13cf5ec4" name="Default Changelist" comment="" />
+      <created>1588506516897</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1588506516897</updated>
+      <workItem from="1588506518202" duration="249000" />
+      <workItem from="1588506805690" duration="2388000" />
+      <workItem from="1588553130546" duration="7677000" />
+      <workItem from="1588561493712" duration="8463000" />
+      <workItem from="1588665573926" duration="6241000" />
+      <workItem from="1588678953665" duration="2797000" />
+      <workItem from="1588681891864" duration="10194000" />
+    </task>
+    <task id="LOCAL-00001">
+      <created>1588554420516</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1588554420516</updated>
+    </task>
+    <task id="LOCAL-00002">
+      <created>1588554553738</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588554553738</updated>
+    </task>
+    <task id="LOCAL-00003">
+      <created>1588595976102</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588595976102</updated>
+    </task>
+    <task id="LOCAL-00004">
+      <created>1588596960926</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1588596960926</updated>
+    </task>
+    <task id="LOCAL-00005">
+      <created>1588598449083</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1588598449083</updated>
+    </task>
+    <task id="LOCAL-00006">
+      <created>1588662669934</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1588662669934</updated>
+    </task>
+    <task id="LOCAL-00007">
+      <created>1588665220247</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1588665220247</updated>
+    </task>
+    <task id="LOCAL-00008">
+      <created>1588665272391</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1588665272391</updated>
+    </task>
+    <task id="LOCAL-00009">
+      <created>1588665960809</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1588665960809</updated>
+    </task>
+    <task id="LOCAL-00010">
+      <created>1588666241393</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1588666241393</updated>
+    </task>
+    <task id="LOCAL-00011">
+      <created>1588671436450</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1588671436450</updated>
+    </task>
+    <task id="LOCAL-00012">
+      <created>1588680185582</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1588680185582</updated>
+    </task>
+    <task id="LOCAL-00013">
+      <created>1588682168901</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1588682168901</updated>
+    </task>
+    <task id="LOCAL-00014">
+      <created>1588682667928</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1588682667928</updated>
+    </task>
+    <task id="LOCAL-00015">
+      <created>1588683225381</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1588683225381</updated>
+    </task>
+    <task id="LOCAL-00016">
+      <created>1588725802620</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1588725802620</updated>
+    </task>
+    <task id="LOCAL-00017">
+      <created>1588733043372</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1588733043372</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="个人中心CRUD上传" />
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="552" y="178" key="#Project_Structure" timestamp="1588507767988">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="178" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1588507767988" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1588508220106">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1588508220106" />
+    <state width="1875" height="401" key="GridCell.Tab.0.bottom" timestamp="1588508847500">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="401" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588508847500" />
+    <state width="1875" height="401" key="GridCell.Tab.0.center" timestamp="1588508847500">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="401" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588508847500" />
+    <state width="1875" height="401" key="GridCell.Tab.0.left" timestamp="1588508847500">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="401" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588508847500" />
+    <state width="1875" height="401" key="GridCell.Tab.0.right" timestamp="1588508847500">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="401" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588508847500" />
+    <state width="1875" height="401" key="GridCell.Tab.1.bottom" timestamp="1588508847500">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="401" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1588508847500" />
+    <state width="1875" height="401" key="GridCell.Tab.1.center" timestamp="1588508847500">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="401" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1588508847500" />
+    <state width="1875" height="401" key="GridCell.Tab.1.left" timestamp="1588508847500">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="401" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1588508847500" />
+    <state width="1875" height="401" key="GridCell.Tab.1.right" timestamp="1588508847500">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1875" height="401" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1588508847500" />
+    <state x="461" y="160" key="SettingsEditor" timestamp="1588507549629">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="160" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1588507549629" />
+    <state x="395" y="212" key="new project wizard" timestamp="1588509074929">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="395" y="212" key="new project wizard/0.0.1920.1040@0.0.1920.1040" timestamp="1588509074929" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/sports-log/src/main/java/com/znsd/sportslog/annotation/SystemControllerLog.java</url>
+          <line>14</line>
+          <properties class="com.znsd.sportslog.annotation.SystemControllerLog" method="description" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="ideajad">
+    <property name="annotate" value="false" />
+    <property name="annotateFully" value="false" />
+    <property name="braces" value="false" />
+    <property name="clear" value="false" />
+    <property name="confirmNavigationTriggeredDecompile" value="true" />
+    <property name="dead" value="true" />
+    <property name="defaultInitializers" value="false" />
+    <property name="dissassemblerOnly" value="false" />
+    <property name="fieldsFirst" value="true" />
+    <property name="fileExtension" value="java" />
+    <property name="fullyQualifiedNames" value="false" />
+    <property name="indentation" value="4" />
+    <property name="intRadix" value="10" />
+    <property name="lineNumbersAsComments" value="true" />
+    <property name="longRadix" value="10" />
+    <property name="maxStringLength" value="64" />
+    <property name="nocast" value="false" />
+    <property name="noclass" value="false" />
+    <property name="nocode" value="false" />
+    <property name="noconv" value="false" />
+    <property name="noctor" value="false" />
+    <property name="nodos" value="false" />
+    <property name="nofd" value="false" />
+    <property name="noinner" value="false" />
+    <property name="nolvt" value="false" />
+    <property name="nonlb" value="false" />
+    <property name="outputDirectory" value="" />
+    <property name="packFields" value="3" />
+    <property name="packImports" value="7" />
+    <property name="prefixNumericalClasses" value="_cls" />
+    <property name="prefixNumericalFields" value="_fld" />
+    <property name="prefixNumericalLocals" value="_lcl" />
+    <property name="prefixNumericalMethods" value="_mth" />
+    <property name="prefixNumericalParameters" value="_prm" />
+    <property name="prefixUnusedExceptions" value="_ex" />
+    <property name="readonly" value="false" />
+    <property name="safe" value="false" />
+    <property name="sort" value="false" />
+    <property name="spaceAfterKeyword" value="false" />
+    <property name="splitStringsAtNewline" value="false" />
+    <property name="useTabs" value="false" />
+  </component>
+</project>

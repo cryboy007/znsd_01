@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    username: group1
+    password: group1
+    url: jdbc:mysql://192.168.1.10:3306/sports_online?serverTimezone=GMT%2B8&userSS=true&userUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+# 整合 mybatis
+mybatis:
+  mapper-locations: classpath:/mapper/*.xml
+  type-aliases-package: com.znsd.sportsbean
+server:
+  port: 8010
+
+  pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+
+

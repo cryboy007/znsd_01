@@ -1,0 +1,79 @@
+package com.znsd.sportsvideo.service;
+
+import com.znsd.sportsbean.util.PageRequest;
+import com.znsd.sportsbean.util.PageResult;
+import com.znsd.sportsbean.video.VideoDomain;
+import com.znsd.sportsbean.video.VideoTypeDomain;
+
+import java.util.List;
+
+public interface VideoService2 {
+
+    /**
+     * 分页查询接口
+     * 这里统一封装了分页请求和结果，避免直接引入具体框架的分页对象, 如MyBatis或JPA的分页对象
+     * 从而避免因为替换ORM框架而导致服务层、控制层的分页接口也需要变动的情况，替换ORM框架也不会
+     * 影响服务层以上的分页接口，起到了解耦的作用
+     *
+     * @param pageRequest 自定义，统一分页查询请求
+     * @return PageResult 自定义，统一分页查询结果
+     */
+    PageResult findPage(PageRequest pageRequest);
+
+    /**
+     * 查询所有视频合集
+     */
+    public List<VideoDomain> findPage2();
+
+    /**
+     * 分页查询所有视频合集（所有的状态）
+     */
+    public PageResult findAllVideoNoStatus(PageRequest pageRequest);
+
+    /**
+     * 根据其他字段分页查询
+     *
+     * @param videoDomain
+     * @return
+     */
+    public PageResult findVideoByField(PageRequest pageRequest, VideoDomain videoDomain);
+
+    public List<VideoDomain> findVideoByField2(VideoDomain videoDomain);
+
+    /**
+     * 模糊查询
+     *
+     * @param
+     * @return
+     */
+    public PageResult findVideoConllectionStr(PageRequest pageRequest, String string);
+
+    public List<VideoDomain> findVideoConllectionStr2(String string);
+
+    /**
+     * 查询所有视频类型
+     *
+     * @return
+     */
+    public List<VideoTypeDomain> findAllType();
+
+    /**
+     * 获取单个视频 状态为已经审核的
+     */
+    public VideoDomain findVideoById(String videoId);
+
+    /**
+     * 根据用户id获取视频  状态为非禁用的
+     */
+    public List<VideoDomain> findVideoList(String userId);
+
+    /**
+     * 根据用户id 与 状态， 获取视频
+     */
+    public List<VideoDomain> findUserVideoListStatus(VideoDomain videoDomain);
+
+    /**
+     * 修改单个视频  必须传视频编号
+     */
+    public void updateVideoField(VideoDomain videoDomain);
+}

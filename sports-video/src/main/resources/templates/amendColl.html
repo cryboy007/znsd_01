@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/updateColl" method="post" enctype="multipart/form-data">
+    <input type="text" name="id" th:value="${v.id}" hidden="hidden"/>
+    视频合集标题： <input type="text" name="name" th:value="${v.name}"/><br/>
+    视频合集描述：<input type="text" name="dec" th:value="${v.dec}"/><br/>
+    类型：<input type="text" name="typeId" th:value="${v.typeId}"/><br/>
+    价格：<input type="number" name="price" th:value="${v.price}"/><br/>
+    积分：<input type="number" name="integral" th:value="${v.integral}"/><br/>
+    用户id：<input type="text" name="userId" th:value="${v.userId}"/><br/>
+    视频合集封面：<input type="file" name="multipartFile" value="请选择文件"><br/>
+    <input type="submit" value="下一步">
+</form>
+</body>
+</html>

@@ -1,0 +1,18 @@
+package com.znsd.sportsuser;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+
+@ComponentScan(basePackages = {"com.znsd.sportsuser","com.znsd.sportslog"})
+@MapperScan(basePackages = {"com.znsd.sportsuser.Mapper","com.znsd.soprtslog.dao"})
+@SpringBootApplication
+public class SportsUserApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SportsUserApplication.class, args);
+    }
+
+}

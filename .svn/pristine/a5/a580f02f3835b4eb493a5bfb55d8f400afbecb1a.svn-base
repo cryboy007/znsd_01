@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportslog.dao.EchartsMapper">
+
+    <select id="getList" resultType="com.znsd.sportsbean.log.EchartsDomain">
+ SELECT times NAME,COUNT(*) value FROM systemlog_db WHERE DATE_FORMAT( times, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) AND bewrite='用户登录' AND logreturn != 'null' GROUP BY TO_DAYS(NAME) = TO_DAYS(NOW());
+    </select>
+
+<!--    <select id="getBin" resultType="com.znsd.sportsbean.log.EchartsDomain">-->
+<!--        SELECT   typeName NAME,COUNT(typeName) num-->
+<!--        FROM (-->
+<!--        SELECT a.`times`,a.`videoId`,b.`typeId` FROM videohistory_db a JOIN video_db b ON b.`id`=a.`videoId` WHERE DATE_SUB(CURDATE(), INTERVAL 7 DAY) <= DATE(a.times)) c-->
+<!--        JOIN videotype_db d ON c.typeId =d.`id` GROUP BY typeName-->
+<!--    </select>-->
+</mapper>

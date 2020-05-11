@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap HelloWorld</title>
+
+    <!-- Bootstrap -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="../static/js/jquery-3.5.1.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="../static/js/bootstrap.min.js"></script>
+
+</head>
+
+<style>
+    .head {
+        background-color: whitesmoke;
+        text-decoration: none;
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        text-align: right;
+        border-bottom: 1px solid red;
+        padding-right: 140px;
+        letter-spacing: 2pt;
+        line-height: 50px;
+    }
+
+    .head a {
+        color: #000000;
+    }
+
+    a:link, a:visited {
+        text-decoration: none; /*超链接无下划线*/
+    }
+
+    a:hover {
+        color: red;
+    }
+
+    .media-body {
+        width: 1200px;
+        height: 710px;
+        display: flex;
+        position: relative;
+        left: 9%;
+    }
+
+    .media-body #boder_left {
+        background-color: whitesmoke;
+        width: 14%;
+        height: 400px;
+        margin: 10px;
+        margin-left: 25px;
+    }
+
+    ul {
+        text-align: center;
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    li {
+        list-style-type: none;
+    }
+
+    .li_head {
+        text-align: center;
+        height: 60px;
+        padding-top: 23px;
+        border-bottom: #A6E1EC 0.0625rem solid;
+    }
+
+    .li_head a {
+        color: #A94442;
+    }
+
+    ul li + li {
+        padding-top: 5px;
+        line-height: 30px;
+        border-bottom: #A6E1EC 0.5px solid;
+    }
+
+    ul li a {
+        color: #000000;
+    }
+
+    ul li ul li a {
+        color: #8C8C8C;
+    }
+
+    .center_left_image {
+        margin-top: 25px;
+    }
+
+    #center_right {
+        margin-top: 20px;
+        height: 675px;
+        width: 850px;
+    }
+
+    .center_right_one {
+        padding-top: 10px;
+        padding-left: 23px;
+        height: 60px;
+        width: 800px;
+        border-bottom: #ADADAD 1px solid;
+    }
+
+    .center_right_two {
+        padding-left: 10%;
+        height: 190px;
+        border-bottom: #ADADAD 1px solid;
+    }
+
+    .user_info {
+        margin-top: 3%;
+        padding-top: 5%;
+        width: 82%;
+        height: 130px;
+    }
+
+    .user_info_one {
+        margin-left: 5%;
+        float: left;
+        width: 13%;
+        height: 80px;
+    }
+
+    .user_info_two {
+        line-height: 30px;
+        margin-left: 5%;
+        float: left;
+        width: 17%;
+        height: 80px;
+    }
+
+    .btn_addPic {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .filePrew {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+    }
+
+    .center_right_three {
+        height: 400px;
+    }
+
+    .from_div {
+        margin-top: 23px;
+        height: 30px;
+    }
+
+    .from_div label {
+        float: left;
+        margin-left: 90px;
+    }
+
+    .from_div input {
+        width: 40%;
+        margin-left: 10%;
+        float: left;
+    }
+
+    .from_div_sure {
+        margin-top: 23px;
+        height: 30px;
+    }
+
+    .from_div_sure label {
+        float: left;
+        margin-left: 90px;
+    }
+
+    .from_div_sure input {
+        width: 40%;
+        margin-left: 56px;
+        float: left;
+    }
+
+
+    label {
+        line-height: 20px;
+        display: inline-block;
+        margin-left: 5px;
+        margin-right: 15px;
+        color: #777;
+    }
+
+    .radio_type {
+        width: 20px;
+        height: 20px;
+        appearance: none;
+        position: relative;
+    }
+
+    .radio_type:before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        border: 1px solid #7d7d7d;
+        display: inline-block;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    .radio_type:checked:before {
+        content: '';
+        width: 20px;
+        height: 20px;
+        background: #c59c5a;
+        display: inline-block;
+        border-radius: 50%;
+        vertical-align: middle;
+    }
+
+    .radio_type:checked:after {
+        content: '';
+        width: 10px;
+        height: 5px;
+        border: 2px solid white;
+        border-top: transparent;
+        border-right: transparent;
+        text-align: center;
+        display: block;
+        position: absolute;
+        top: 6px;
+        left: 5px;
+        vertical-align: middle;
+        transform: rotate(-45deg);
+    }
+
+    .radio_type:checked + label {
+        color: #c59c5a;
+    }
+
+    .from_div_gender {
+        margin-top: 0px;
+        margin-left: 10%;
+    }
+
+    .from_div_gender input {
+        margin-top: 20px;
+        margin-left: 11%;
+    }
+
+    .info_btn {
+        margin-top: 5%;
+        text-align: center;
+    }
+</style>
+
+<body>
+<div class="page-header">
+    <div class="head">
+        <a href="#">商城首页</a>
+        <a href="index.html">个人中心</a>
+    </div>
+</div>
+<div class="media-body">
+    <div class="media_body_left">
+        <img src="../static/img/image/right_1.png"/>
+    </div>
+
+    <div id="boder_left">
+        <div>
+            <ul>
+                <li class="li_head">
+                    <a href="index.html"> 个人中心 </a>
+                </li>
+
+                <li>
+                    <span> 个人资料 </span>
+                    <ul>
+                        <li>
+                            <a href="personalData.html">个人信息</a>
+                        </li>
+
+                        <li>
+                            <a href="receivingAddress.html">收货地址</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <span> 我的交易 </span>
+                    <ul>
+                        <li>
+                            <a href="order.html">订单管理</a>
+                        </li>
+
+                        <li>
+                            <a href="change.html">售后</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <span> 我的小窝 </span>
+                    <ul>
+                        <li>
+                            <a href="subscribe.html">订阅</a>
+                        </li>
+                        <li>
+                            <a href="collection.html">收藏</a>
+                        </li>
+                        <li>
+                            <a href="history.html">足迹</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="center_left_image">
+            <img src="../static/img/image/life.png" width="100%" height="100%"/>
+        </div>
+    </div>
+    <div id="center_right">
+        <div class="center_right_one">
+            <h4>个人资料/ <small>Personal</small></h4>
+        </div>
+
+        <div class="center_right_two">
+            <div class="user_info">
+                <div class="user_info_one">
+                    <a class="btn_addPic mlr-auto" href="javascript:void(0);">
+                        <img src="../static/img/image/touxiang.jpg" width="100%" height="100%"/>
+                        <input class="filePrew" type="file" name="pic">
+                    </a>
+                </div>
+                <div class="user_info_two">
+                    <div id="username" style="font-weight:lighter;">
+                        用户名 ：大玩家
+                    </div>
+                    <div style="color: red;">我是大会员</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="center_right_three">
+            <div class="from_div">
+                <label>姓名：</label>
+                <div><input type="text" name="name" placeholder="name"/></div>
+            </div>
+
+            <div class="from_div">
+                <label>密码：</label>
+                <div><input type="password" name="password" placeholder="password"/></div>
+            </div>
+
+            <div class="from_div_sure">
+                <label>确认密码：</label>
+                <div><input type="password" name="sure" placeholder="password"/></div>
+            </div>
+
+            <div class="from_div">
+                <label>邮箱：</label>
+                <div><input type="email" name="email" placeholder="email"/></div>
+            </div>
+
+            <div class="from_div_gender">
+                <label>性别：</label>
+                <input class="radio_type" type="radio" name="type" id="radio1" checked="checked"/>
+                <label for="radio1">男</label>
+                <input class="radio_type" type="radio" name="type" id="radio2"/>
+                <label for="radio2">女</label>
+            </div>
+
+            <div class="from_div">
+                <label>生日：</label>
+                <div><input type="date" name="birth"/></div>
+            </div>
+
+            <div class="info_btn">
+                <button type="submit">保存修改</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div><img src="../static/img/image/dibu2.png" width="100%"/></div>
+</body>
+</html>

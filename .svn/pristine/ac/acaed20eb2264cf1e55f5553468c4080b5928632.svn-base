@@ -1,0 +1,112 @@
+[
+    {
+        "name": "用户管理",
+        "icon": "&#xe770;",
+        "url": "",
+        "hidden": false,
+        "list": [
+            {
+                "name": "用户列表",
+                "url": "user_index.html"
+            },
+            {
+                "name": "添加用户",
+                "url": "user_add.html"
+            }
+        ]
+    },
+    {
+        "name": "商品管理",
+        "icon": "&#xe698;",
+        "url": "",
+        "hidden": false,
+        "list": [
+            {
+                "name": "商品列表",
+                "url": "commodity_index.html"
+            },
+            {
+                "name": "商品添加",
+                "url": "commodity_add.html"
+            }
+        ]
+    },
+    {
+        "name": "订单管理",
+        "icon": "&#xe63c;",
+        "url": "",
+        "hidden": false,
+        "list": [
+            {
+                "name": "订单列表",
+                "url": "order_index.html"
+            }
+        ]
+    },
+    {
+        "name": "视频管理",
+        "icon": "&#xe652;",
+        "url": "",
+        "hidden": false,
+        "list": [
+            {
+                "name": "视频列表",
+                "url": "video_index.html"
+            },
+            {
+                "name": "视频审核",
+                "url": "video_verify.html"
+            },
+            {
+                "name": "视频上传",
+                "url": "video_add.html"
+            }
+        ]
+    },
+    {
+        "name": "直播管理",
+        "icon": "&#xe6ed;",
+        "url": "",
+        "hidden": false,
+        "list": [
+            {
+                "name": "直播列表",
+                "url": "live_index.html"
+            }
+        ]
+    },
+    {
+        "name": "消息推送",
+        "icon": "&#xe618;",
+        "url": "",
+        "hidden": false,
+        "list": [
+            {
+                "name": "消息列表",
+                "url": "message_index.html"
+            },
+            {
+                "name": "发送消息",
+                "url": "message_send.html"
+            }
+        ]
+    },
+    {
+        "name": "系统设置",
+        "icon": "&#xe620;",
+        "url": "",
+        "hidden": false,
+        "list": [
+            {
+                "name": "清除缓存",
+                "url": "web_cache.html"
+            }
+        ]
+    },
+    {
+        "name": "退出登录",
+        "icon": "&#xe65c;",
+        "url": "web_cache.html",
+        "list": []
+    }
+]

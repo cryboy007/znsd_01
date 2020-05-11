@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <script src="static/common/echarts.min.js"></script>
+    <style>
+        .home-div-three-big > div {
+            text-align: center;
+        }
+
+        a1 {
+            position: relative;
+            bottom: 90px;
+            font-size: 38px;
+        }
+
+        .body {
+            height: 100%;
+            background-color: #f7f6f2;
+            padding: 0px;
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        .home-div-big-big {
+            background-color: #f7f6f2;
+            margin: 0px;
+            padding: 0px;
+            height: 2500px;
+            width: 100%;
+        }
+
+        .home-div-three-big {
+            /*  border: 1px solid red; */
+            padding: 30px 0px 10px 20px;
+            height: 300px;
+        }
+
+        .div {
+            height: 90%;
+            width: 28.5%;
+            /* border: 1px solid black; */
+            float: left;
+            margin-right: 30px;
+            background-color: white;
+            font-size: 25px;
+            line-height: 140px;
+        }
+
+
+        #echartsOne {
+            clear: left;
+            position: relative;
+            bottom: 70px;
+            left: 20px;
+        }
+
+        #div1 {
+            color: #FFFFFF;
+            background-color: coral;
+            width: 200px;
+            height: 150px;
+        }
+
+        #div2 {
+            color: #FFFFFF;
+            background-color: forestgreen;
+            width: 200px;
+            height: 150px;
+        }
+
+        #div3 {
+            color: #FFFFFF;
+            background-color: royalblue;
+            width: 200px;
+            height: 150px;
+        }
+
+        #div4 {
+            color: #FFFFFF;
+            background-color: #7de16d;
+            width: 200px;
+            height: 150px;
+        }
+
+        #div5 {
+            color: #FFFFFF;
+            background-color: #7458e1;
+            width: 200px;
+            height: 150px;
+        }
+
+        #div6 {
+            color: #FFFFFF;
+            background-color: #5783e1;
+            width: 200px;
+            height: 150px;
+        }
+
+        span {
+            font-size: 50px;
+            text-align: center;
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
+    </style>
+    <script src="static/common/echarts.min.js"></script>
+    <script src="static/common/jquery-3.3.1.min.js"></script>
+</head>
+<body class="body">
+<div class="home-div-big-big">
+    <div class="home-div-three-big">
+        <div id="div1" class="div">今日活跃<br>
+            <a1 id="span1"></a1>
+        </div>
+        <div id="div2" class="div">本月活跃<br>
+            <a1 id="span2"></a1>
+        </div>
+        <div id="div3" class="div">用户数量<br>
+            <a1 id="span3"></a1>
+        </div>
+        <div id="div4" class="div">今日盈利<br>
+            <a1 id="span4"></a1>
+        </div>
+        <div id="div5" class="div">本月盈利<br>
+            <a1 id="span5"></a1>
+        </div>
+        <!--			<div id="div6" class="div">视频总数<br><a1 id="span6"></a1></div>-->
+    </div>
+    <div id="echartsOne" style="width: 800px; height: 400px;"></div>
+    <iframe src="tt.html" name="iframe_a" frameborder="0"
+            style="position:absolute;top:70%;right: 1%;margin-top: -200px;width: 450px;height:250px;"></iframe>
+</div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('echartsOne'));
+    myChart.setOption({
+        color: ['#2ea6e2'],
+        title: {
+            text: '本月用户活跃量'
+        },
+        tooltip: {
+            trigger: 'axis', //坐标轴触发提示框，多用于柱状、折线图中
+        },
+        legend: {
+            data: ['本月用户活跃量']
+        },
+        toolbox: {
+            feature: {
+                dataView: {
+                    show: true,
+                    readOnly: false
+                },
+                magicType: {
+                    show: true,
+                    type: ['line', 'bar']
+                },
+                restore: {
+                    show: true
+                },
+                saveAsImage: {
+                    show: true
+                }
+            }
+        },
+        xAxis: {
+            type: 'category',
+            data: []
+        },
+        yAxis: {},
+        series: [{
+            name: '本月用户活跃',
+            type: 'bar',
+            data: []
+        }]
+    });
+    var names = []; //类别数组（实际用来盛放X轴坐标值）
+    var nums = []; //销量数组（实际用来盛放Y坐标值）
+
+    $.ajax({
+        type: "get",
+        async: true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://192.168.1.10:8006/server/echarts/echart",
+        dataType: "json",
+        success: function (data) {
+            //请求成功时执行该函数内容，result即为服务器返回的json对象
+            var obj = data; //解析后台传来的json数据
+            for (var i = 0; i < obj.length; i++) {
+                names.push(obj[i].name);
+                console.log(obj[i]);
+            }
+            for (var i = 0; i < obj.length; i++) {
+                nums.push(obj[i].value);
+            }
+            myChart.setOption({ //加载数据图表
+                xAxis: {
+                    data: names
+                },
+                series: [{
+                    // 根据名字对应到相应的系列
+                    name: '用户活跃量',
+                    data: nums
+                }]
+            });
+        },
+        error: function (errorMsg) {
+            //请求失败时执行该函数
+            alert("图表请求数据失败!");
+            myChart.hideLoading();
+        }
+    })
+</script>
+
+<script type="text/javascript">
+    $.ajax({
+        type: "get",
+        async: true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://192.168.1.10:8003/logUserUp",
+        success: function (request) {
+            $("#span1").html(request);
+        }
+    })
+    $.ajax({
+        type: "get",
+        async: true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://192.168.1.10:8003/logUserSum",
+        data: "type=2",
+        success: function (request) {
+            $("#span3").html(request);
+        }
+    })
+    $.ajax({
+        type: "get",
+        async: true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://192.168.1.10:8003/logUserHuo",
+        data: "type=3",
+        success: function (request) {
+            $("#span2").html(request);
+        }
+    })
+    $.ajax({
+        type: "get",
+        async: true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://192.168.1.10:8003/getShuiNow",
+        success: function (request) {
+            $("#span4").html(request);
+        }
+    })
+    $.ajax({
+        type: "get",
+        async: true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+        url: "http://192.168.1.10:8003/getShuiMon",
+        success: function (request) {
+            $("#span5").html(request);
+        }
+    })
+    // $.ajax({
+    // 	type : "get",
+    // 	async : true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+    // 	url : "http://localhost:8003/logVoidSum",
+    // 	success : function(request) {
+    // 		$("#span6").html(request);
+    // 	}
+    // })
+</script>
+</body>
+</html>

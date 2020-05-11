@@ -1,0 +1,19 @@
+package com.znsd.sportscommodity;
+
+import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
+
+
+@ComponentScan(basePackages = {"com.znsd.sportscommodity", "com.znsd.sportslog"})
+@MapperScan(basePackages = {"com.znsd.sportscommodity.getType.dao", "com.znsd.sportscommodity.commodity.dao", "com.znsd.sportscommodity.shoppingcart.dao", "com.znsd.sportscommodity.order.dao", "com.znsd.sportscommodity.history.dao",
+        "com.znsd.sportscommodity.login.dao", "com.znsd.soprtslog.dao"})
+@SpringBootApplication
+public class SportsCommodityApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SportsCommodityApplication.class, args);
+    }
+
+}

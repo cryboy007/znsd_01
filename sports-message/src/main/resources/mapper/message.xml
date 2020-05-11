@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.message.dao.MessageDao">
+
+    <insert id="add" parameterType="com.znsd.sportsbean.http.MessageDomain">
+        insert into message_db(name,content,userId) values(#{name},#{content},#{userId});
+    </insert>
+
+    <select id="select" resultType="com.znsd.sportsbean.http.MessageDomain">
+        select * from message_db;
+    </select>
+
+    <update id="read" parameterType="java.lang.Integer">
+        update message_db set status= 1 where id = #{id};
+    </update>
+
+    <select id="selectView" parameterType="com.znsd.sportsbean.view.MessageAndUser"
+            resultType="com.znsd.sportsbean.view.MessageAndUser">
+        select * from messageAndUser_view;
+    </select>
+
+    <delete id="delete" parameterType="java.lang.Integer">
+        delete from message_db where id = #{id};
+    </delete>
+</mapper>

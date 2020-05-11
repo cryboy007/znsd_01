@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportslog.dao.LofMapper">
+
+<!--    <insert id="add">-->
+<!--        insert into systemlog_db(id,bewrite,type,parameter,userid,ip) values (#{id},#{bewrite},#{type},#{parameter},#{userid},#{ip})-->
+<!--    </insert>-->
+
+
+    <select id="selectAll" resultType="com.znsd.sportsbean.log.SystemLogDomain">
+        select * from systemlog_db
+    </select>
+
+    <select id="selectUserLog" resultType="com.znsd.sportsbean.log.SystemLogDomain">
+        select * from systemlog_db
+        <trim prefix="where" suffixOverrides="and">
+            <if test="id!=null">
+                id=#{id} and
+            </if>
+            <if test="bewrite!=null">
+                bewrite=#{bewrite} and
+            </if>
+            <if test="type!=null">
+                type=#{type} and
+            </if>
+            <if test="parameter!=null">
+                parameter=#{parameter} and
+            </if>
+            <if test="userid!=null">
+                userid=#{userid} and
+            </if>
+            <if test="times!=null">
+                times=#{times} and
+            </if>
+            <if test="ip!=null">
+                ip=#{ip}
+            </if>
+        </trim>
+     </select>
+
+    <select id="selectS" resultType="com.znsd.sportsbean.log.SystemLogDomain">
+        select * from systemlog_db
+        <trim prefix="where" suffixOverrides="and">
+
+            times>DATE_SUB(CURDATE(), INTERVAL 1 WEEK) and
+
+            <if test="id!=null">
+                id=#{id} and
+            </if>
+            <if test="bewrite!=null">
+                bewrite=#{bewrite} and
+            </if>
+            <if test="type!=null">
+                type=#{type} and
+            </if>
+            <if test="parameter!=null">
+                parameter=#{parameter} and
+            </if>
+            <if test="userid!=null">
+                userid=#{userid} and
+            </if>
+            <if test="times!=null">
+                times=#{times} and
+            </if>
+            <if test="ip!=null">
+                ip=#{ip}
+            </if>
+
+        </trim>
+    </select>
+
+    <select id="getUserUpSum" resultType="java.lang.Integer">
+        select count(*)  from systemlog_db where to_days(times) = to_days(now()) and bewrite='用户登录' and logreturn != 'null'
+    </select>
+
+<!--    <select id="getUserUpSumZT">-->
+<!--        select count(*) from systemlog_db where (TO_DAYS( NOW( ) ) - TO_DAYS(times))<=1 and bewrite='用户登录' and logreturn != 'null';-->
+<!--    </select>-->
+
+    <select id="getUserSum" resultType="java.lang.Integer">
+        select count(*) from user_db
+    </select>
+
+    <select id="getUserHuo" resultType="java.lang.Integer">
+      select count(*) from (SELECT distinct parameter FROM systemlog_db WHERE DATE_FORMAT( times, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) and bewrite='用户登录' and logreturn != 'null') a
+    </select>
+
+    <select id="getShuiNow" resultType="java.lang.Double">
+       SELECT SUM(SUM) num FROM order_db  WHERE `status`=2 AND  TO_DAYS(times) = TO_DAYS(NOW())
+    </select>
+
+    <select id="getShuiMon" resultType="java.lang.Double">
+       SELECT SUM(SUM)  FROM order_db WHERE `status`=2 AND  DATE_FORMAT( times, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+    </select>
+
+    <select id="logVoidSum" resultType="java.lang.Integer">
+        select count(*) from video_db
+    </select>
+</mapper>

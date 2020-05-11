@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportsvideo.dao.VideoHistoryDao">
+    <insert id="insertHistory" parameterType="com.znsd.sportsbean.video.VideoHistoryDomain">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select replace(uuid(), '-', '')
+        </selectKey>
+        insert into videohistory_db(id,videoId,userId) values(#{id},#{videoId},#{userId});
+    </insert>
+
+    <select id="getHistory" parameterType="com.znsd.sportsbean.video.VideoHistoryDomain" resultType="com.znsd.sportsbean.video.VideoHistoryDomain">
+        select * from videohistory_db where videoId=#{videoId} and userId=#{userId}
+    </select>
+    <update id="updateHistory" parameterType="java.lang.String">
+        update videohistory_db set times=DATE_FORMAT(NOW(),'%Y-%m-%d %H:%m:%s') where id=#{id}
+    </update>
+</mapper>

@@ -1,0 +1,168 @@
+package com.znsd.sportsvideo.controller;
+
+import com.znsd.sportsbean.user.UserDomain;
+import com.znsd.sportsbean.user.UserVideoDomain;
+import com.znsd.sportsbean.video.VideoDomain;
+import com.znsd.sportsvideo.service.UserVideoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * 该用户 点赞，收藏
+ */
+@Controller
+public class UserVideoController {
+
+    @Autowired
+    private UserVideoService userVideoService;
+
+    /**
+     *获取该用户所有视频集合的点赞量
+     * @param userId
+     * @return
+     */
+    @GetMapping("/getLikeNumber")
+    @ResponseBody
+    public Integer getLikeNumber(String userId){
+        return userVideoService.getLikeNumber(userId);
+    }
+
+    /**
+     *获取该用户所有视频集合的收藏量
+     * @param userId
+     * @return
+     */
+    @GetMapping("/getCollectNumber")
+    @ResponseBody
+    public Integer getCollectNumber(String userId){
+        return userVideoService.getCollectNumber(userId);
+    }
+
+
+
+    /**
+     * ***************************************根据集合id 获取单个视频集合的所有点赞，所有收藏、评分*******************************************
+     */
+    /**必须传视频id 并且传入（赞数\评分数\收藏数其一字段）
+     * 根据字段查询
+     * 返回单个视频里的点赞数\评分数\收藏数
+     */
+    @GetMapping("/getAloneConllectlike")
+    @ResponseBody
+    public int getAloneConllectlikes(UserVideoDomain videoDomain){
+        System.out.println(videoDomain+"--------"+videoDomain.getId());
+        return  userVideoService.getAloneField(videoDomain);
+    }
+
+
+
+    /**
+     * ***************************************用户对单个集合视频的点赞，收藏、评分 进行CRUD*******************************************
+     */
+    /**
+     * 视频集合id
+     * 查询看过该视频的人数 (浏览该视频集合总数)
+     */
+    @GetMapping("/getAloneVideoUserLook")
+    @ResponseBody
+    public Integer getAloneVideoUserLooks(String collId){
+        System.out.println(collId);
+        System.out.println();
+        Integer u=userVideoService.getAloneVideoUserLook(collId);
+      return   u;
+    }
+
+    /**
+     * 必须传入用户id,和视频集合id
+     * 查询用户对单个视频的操作(eg:查询是点赞过、收藏等)
+     */
+    @GetMapping("/getUserAloneVideo")
+    public UserVideoDomain getUserAloneVideos(UserVideoDomain videoDomain){
+       return userVideoService.getUserAloneVideo(videoDomain);
+    }
+    /**
+     *  必须传入用户id,和视频vedioId
+     *  增加用户对单个视频集合的点赞，收藏、评分
+     */
+    @GetMapping("/addUserLikeAndCollectAndScore")
+    @ResponseBody
+    public UserVideoDomain addUserLikeAndCollectAndScores(UserVideoDomain videoDomain){
+       UserVideoDomain uvd= userVideoService.getUserAloneVideo(videoDomain);
+           if(uvd==null){//之前没看过该视频，添加点赞，收藏、评分
+               try{
+                   String id= UUID.randomUUID().toString();
+                   videoDomain.setId(id);
+                   videoDomain.setCollect(0);
+                   videoDomain.setLike(0);
+                   videoDomain.setScore(0.0);
+               }catch (Exception e){
+                   new RuntimeException("id重复");
+               }
+               userVideoService.addUserLikeAndCollectAndScore(videoDomain);
+               return videoDomain;
+           }
+           return uvd;
+       }
+
+
+
+    /**
+     * 必须传入用户id,和视频集合id
+     *  修改对单个视频集合  点赞/收藏/评分 （修改其一）
+     * @param videoDomain
+     */
+    @GetMapping("/updateUserLikeOrCollectOrScore")
+    @ResponseBody
+    public String updateUserLikeOrCollectOrScores(UserVideoDomain videoDomain){
+        userVideoService.updateUserLikeOrCollectOrScore(videoDomain);
+        return "oo";
+    }
+
+    /**
+     * 获取单个视频集合的浏览数、点赞数、收藏数、评分
+     * @param videoId
+     * @return
+     */
+    @GetMapping("/getLikeCollectScore")
+    @ResponseBody
+    public List<Object> getLikeCollectScore(String videoId){
+        //0 浏览数量  1 获取点赞数   2获取收藏数    3获取评分
+        return userVideoService.getLikeCollectScore(videoId);
+    }
+
+
+    @GetMapping("/getLSC")
+    @ResponseBody
+    public UserVideoDomain getLSC(String videoId){
+        return userVideoService.getLSC(videoId);
+    };
+
+    /**
+     * 根据用户id修改用户
+     * @param userDomain
+     */
+    @PostMapping("updateUserByUserId")
+    @ResponseBody
+    public String updateUserByUserId(UserDomain userDomain) {
+        userVideoService.updateUserByUserId(userDomain);
+        return "";
+    }
+
+    /**
+     * 根据用户id获取 用户
+     * @return
+     */
+    @GetMapping("getSingleUser")
+    @ResponseBody
+    public UserDomain getUserById(String id){
+      return   userVideoService.getUserById(id);
+    }
+
+}

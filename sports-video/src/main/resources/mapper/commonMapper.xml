@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportsvideo.dao.CommonDao">
+
+    <select id="getCommonNumber" parameterType="java.lang.String" resultType="int">
+        SELECT COUNT(*) FROM user_db u JOIN video_db vc ON vc.userId=u.id JOIN videocomment_db vc2 ON vc.id=vc2.videoId
+        WHERE u.id=#{userId}
+    </select>
+
+    <select id="getAloneConllectCommon" resultMap="getAloneConllectCommon2">
+        SELECT v.id,v.userId,v.comment,v.times,v.videoId,u.* FROM videocomment_db v join user_db u on v.userId=u.id
+        where videoId=#{videoId} and status=1
+    </select>
+
+
+    <resultMap id="getAloneConllectCommon2" type="com.znsd.sportsbean.video.VideoCommentDomain">
+        <id property="wid" column="wid"/>
+        <result property="userId" column="userId"/>
+        <result property="comment" column="comment"/>
+        <result property="times" column="times"/>
+        <result property="videoId" column="videoId"/>
+        <!--获得单个对象数据-->
+        <association property="user" column="userId" resultMap="user"></association>
+    </resultMap>
+    <resultMap id="user" type="com.znsd.sportsbean.user.UserDomain">
+        <id property="wsid" column="wsid"/>
+        <result property="name" column="name"/>
+        <result property="username" column="username"/>
+        <result property="email" column="email"/>
+        <result property="gender" column="gender"/>
+        <result property="typeid" column="typeid"/>
+        <result property="image" column="image"/>
+    </resultMap>
+
+
+    <insert id="insertComment" parameterType="com.znsd.sportsbean.video.VideoCommentDomain">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select replace(uuid(), '-', '')
+        </selectKey>
+        insert into videocomment_db(id,userId,comment,videoId) values(#{id},#{userId},#{comment},#{videoId});
+    </insert>
+
+</mapper>

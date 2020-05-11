@@ -1,0 +1,97 @@
+package com.znsd.sportsuser.Service.ServiceImpl;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.znsd.sportsbean.user.UserDomain;
+import com.znsd.sportsuser.Mapper.UserMapper;
+import com.znsd.sportsuser.Service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserMapper userMapper;
+
+    @Override
+    public boolean addUser(UserDomain user) {
+
+        return userMapper.addUser(user);
+    }
+
+    @Override
+    public UserDomain queryUser(String id) {
+
+        return userMapper.queryUser(id);
+    }
+
+    @Override
+    public List<UserDomain> queryAll() {
+
+        return userMapper.queryAll();
+    }
+
+    @Override
+    public PageInfo<UserDomain> fenYe(int page, int limit) {
+
+        PageHelper.startPage(page, limit);
+
+        List<UserDomain> userDomains = userMapper.fenYe(page, limit);
+
+        PageInfo<UserDomain> pageInfo = new PageInfo<>(userDomains);
+
+        return pageInfo;
+    }
+
+
+    @Override
+    public UserDomain queryName(String userName) {
+
+        return userMapper.queryName(userName);
+    }
+
+    @Override
+    public PageInfo<UserDomain> fuzzyQuery(String value, int page, int limit) {
+
+        PageHelper.startPage(page, limit);
+
+        List<UserDomain> userDomains = userMapper.fuzzyQuery("%" + value + "%", page, limit);
+
+        PageInfo<UserDomain> pageInfo = new PageInfo<>(userDomains);
+
+        return pageInfo;
+    }
+
+
+    @Override
+    public boolean updateUser(UserDomain user) {
+
+        return userMapper.updateUser(user);
+    }
+
+    @Override
+    public boolean deleteUser(String id) {
+
+        return userMapper.deleteUser(id);
+    }
+
+
+    public UserDomain sigInUser(String username, String password) {
+
+        System.out.println(username + "-=-" + password);
+        UserDomain userDomain = userMapper.sigInUser(username, password);
+        System.out.println(userDomain + "----------------service");
+
+        return userDomain;
+    }
+
+    @Override
+    public int updateMoney(String userId, double money) {
+        return this.userMapper.updateMoney(userId, money);
+    }
+
+
+}

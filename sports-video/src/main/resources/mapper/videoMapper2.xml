@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportsvideo.dao.VideoDao2">
+
+    <select id="findPage" resultType="com.znsd.sportsbean.video.VideoDomain">
+        select v.*,ty.id,ty.typename from video_db v left join videotype_db ty on v.typeId=ty.id where status=1
+    </select>
+    <select id="findAllVideoNoStatus" resultType="com.znsd.sportsbean.video.VideoDomain">
+        select v.*,ty.id,ty.typename from video_db v left join videotype_db ty on v.typeId=ty.id
+    </select>
+
+    <resultMap id="getAllVideo" type="com.znsd.sportsbean.video.VideoDomain">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="video" column="video"/>
+        <result property="dec" column="dec"/>
+        <result property="typeId" column="typeId"/>
+        <result property="image" column="image"/>
+        <result property="price" column="price"/>
+        <result property="times" column="times"/>
+        <result property="integral" column="integral"/>
+        <result property="userId" column="userId"/>
+        <result property="status" column="status"/>
+        <!--获得单个对象数据-->
+        <association property="userTypeDomain" column="typeId" resultMap="type"></association>
+    </resultMap>
+    <resultMap id="type" type="com.znsd.sportsbean.video.VideoTypeDomain">
+        <id property="id" column="id"/>
+        <result property="typeName" column="typeName"/>
+    </resultMap>
+    <select id="findVideoByField" parameterType="com.znsd.sportsbean.video.VideoDomain"
+            resultType="com.znsd.sportsbean.video.VideoDomain">
+        select * from video_db where status=1
+        <trim suffixOverrides=",">
+            <if test="userId != null">
+                and userId = #{userId}
+            </if>
+            <if test=" status!=null">
+                and status=#{status}
+            </if>
+            <if test="userId != null">
+                and id=#{id}
+            </if>
+            <if test=" times != null">
+                and times=#{times}
+            </if>
+            <if test="typeId !=null">
+                and typeId= #{typeId}
+            </if>
+            <if test="name!=null">
+                and name = #{name}
+            </if>
+            <if test="price!=null">
+                <if test="price==0">
+                    and price =0
+                </if>
+                <if test="price>0">
+                    and price >#{price}
+                </if>
+            </if>
+        </trim>
+
+    </select>
+    <select id="findVideoStr" resultType="com.znsd.sportsbean.video.VideoDomain">
+        select * from video_db c left join videotype_db v on c.typeId=v.id where v.typeName like CONCAT('%', #{string},
+        '%') OR `dec` like CONCAT('%', #{string}, '%') OR typeId like CONCAT('%',#{string},'%')
+        OR name like CONCAT('%',#{string},'%') OR price like CONCAT('%',#{string},'%') and status=1
+    </select>
+
+    <select id="findAllType" resultType="com.znsd.sportsbean.video.VideoTypeDomain">
+        select * from videotype_db
+    </select>
+    <select id="findVideoById" parameterType="java.lang.String" resultType="com.znsd.sportsbean.video.VideoDomain">
+        select v.*,ty.id,ty.typename from video_db v left join videotype_db ty on v.typeId=ty.id where v.id=#{videoId}
+        and status=1
+    </select>
+
+    <select id="findVideoList" resultType="com.znsd.sportsbean.video.VideoDomain">
+        select * from video_db where userId=#{userId} and status!=2
+    </select>
+    <select id="findUserVideoListStatus" resultType="com.znsd.sportsbean.video.VideoDomain">
+        select * from video_db where userId=#{userId}
+        <trim>
+            <if test="status!=null">
+                and status=#{status}
+            </if>
+        </trim>
+    </select>
+
+
+    <select id="updateVideoField" resultType="com.znsd.sportsbean.video.VideoDomain">
+        update video_db
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">
+                name =#{name} ,
+            </if>
+            <if test="video !=null">
+                video =#{video},
+            </if>
+            <if test="dec !=null">
+                `dec` =#{dec},
+            </if>
+            <if test="typeId !=null">
+                typeId =#{typeId},
+            </if>
+            <if test="image !=null">
+                image =#{image},
+            </if>
+            <if test="video !=null">
+                price =#{price},
+            </if>
+            <if test="times !=null">
+                times =#{times},
+            </if>
+            <if test="integral !=null">
+                integral =#{integral},
+            </if>
+            <if test="userId !=null">
+                userId =#{userId},
+            </if>
+            <if test="status !=null">
+                status =#{status}
+            </if>
+        </trim>
+        where id=#{id}
+    </select>
+
+</mapper>

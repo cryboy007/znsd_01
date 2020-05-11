@@ -1,0 +1,99 @@
+package com.znsd.sportscommodity.commodity.dao;
+
+import com.znsd.sportsbean.commodity.CommodityAndTypeDomain;
+import com.znsd.sportsbean.commodity.CommodityAndVideoDomain;
+import com.znsd.sportsbean.commodity.CommodityDomain;
+import com.znsd.sportsbean.video.VideoDomain;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
+/**
+ * (commodityDomain)表数据库访问层
+ *
+ * @author makejava
+ * @since 2020-05-04 14:51:29
+ */
+public interface CommodityDbDao {
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param id 主键
+     * @return 实例对象
+     */
+    CommodityDomain queryById(String id);
+
+    /**
+     * 查询指定行数据
+     *
+
+     * @return 对象列表
+     */
+    List<CommodityDomain> queryAllByLimit();
+
+
+    /**
+     * 通过实体作为筛选条件查询
+     *
+     * @param commodityDomain 实例对象
+     * @return 对象列表
+     */
+    List<CommodityDomain> queryAll(CommodityDomain commodityDomain);
+
+    /**
+     * 新增数据
+     *
+     * @param commodityDomain 实例对象
+     * @return 影响行数
+     */
+    int insert(CommodityDomain commodityDomain);
+
+    /**
+     * 修改数据
+     *
+     * @param commodityDomain 实例对象
+     * @return 影响行数
+     */
+    int update(CommodityDomain commodityDomain);
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param id 主键
+     * @return 影响行数
+     */
+    int deleteById(String id);
+
+
+    List<CommodityAndTypeDomain> querycommodityDomain();
+
+    List<CommodityDomain> queryName(String name);
+
+    List<CommodityAndTypeDomain> querycommodityTypeDomainByLimit();
+
+    List<CommodityAndTypeDomain> queryTypeCommodity(@Param("typeId") String typeId);
+
+    /**
+     * 重置版分页
+     * @return
+     */
+    List<CommodityAndTypeDomain> querycommodityTypeDomainByLimit2();
+
+    /**
+     * 模糊查询分页
+     *
+     * @param name
+     * @return 查询集合
+     */
+    public List<CommodityAndTypeDomain> getNameLimit(@Param("name") String name);
+
+
+    public CommodityAndTypeDomain queryCommodityAndType(String id);
+
+    /**
+     * 添加商品视频中间表
+     * @param commodityAndVideoDomain
+     */
+    public void insertVideo(CommodityAndVideoDomain commodityAndVideoDomain);
+}

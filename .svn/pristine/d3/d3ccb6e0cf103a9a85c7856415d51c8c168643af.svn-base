@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>查看</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" type="text/css" th:href="@{/css/flatpickr.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/fontello.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/fontello-codes.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/thumbs-embedded.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/video-js.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/color.css}">
+</head>
+<style>
+	#ssDiv{
+		height: 80px;
+
+		margin: 0px auto;
+	}
+	#searchDiv{
+		width: 600px;
+		height: 80px;
+		line-height: 80px;
+		margin:0px auto;
+
+	}
+	#search{
+		width: 500px;
+		height: 30px;
+		border: 2px solid #808080;
+
+	}
+	#searchButton{
+		width:50px;
+		height:60px;
+		background-color: #808080;
+		color: aliceblue;
+	}
+</style>
+
+<body>
+
+
+
+<div class="wrapper hp_1">
+
+	<div class="side_menu">
+		<div class="form_dvv">
+			<a href="#" title="" class="login_form_show">Sign in</a>
+		</div>
+		<div class="sd_menu">
+			<ul class="mm_menu">
+				<li>
+						<span>
+							<i class="icon-home"></i>
+						</span>
+					<a href="#" title="">Home</a>
+				</li>
+				<li>
+						<span>
+							<i class="icon-fire"></i>
+						</span>
+					<a href="#" title="">Trending</a>
+				</li>
+				<li>
+						<span>
+							<i class="icon-subscriptions"></i>
+						</span>
+					<a href="#" title="">Subscriptions</a>
+				</li>
+			</ul>
+		</div><!--sd_menu end-->
+		<div class="sd_menu">
+			<h3>Library</h3>
+			<ul class="mm_menu">
+				<li>
+						<span>
+							<i class="icon-history"></i>
+						</span>
+					<a href="#" title="">History</a>
+				</li>
+				<li>
+						<span>
+							<i class="icon-watch_later"></i>
+						</span>
+					<a href="#" title="">Watch Later</a>
+				</li>
+				<li>
+						<span>
+							<i class="icon-purchased"></i>
+						</span>
+					<a href="#" title="">Purchases</a>
+				</li>
+				<li>
+						<span>
+							<i class="icon-like"></i>
+						</span>
+					<a href="#" title="">Liked Videos</a>
+				</li>
+				<li>
+						<span>
+							<i class="icon-play_list"></i>
+						</span>
+					<a href="#" title="">Playlist</a>
+				</li>
+			</ul>
+		</div>
+		<div class="sd_menu">
+			<ul class="mm_menu">
+				<li>
+						<span>
+							<i class="icon-settings"></i>
+						</span>
+					<a href="#" title="">Settings</a>
+				</li>
+				<li>
+						<span>
+							<i class="icon-flag"></i>
+						</span>
+					<a href="#" title="">Report history</a>
+				</li>
+				<li>
+						<span>
+							<i class="icon-logout"></i>
+						</span>
+					<a href="#" title="">Sign out</a>
+				</li>
+			</ul>
+		</div><!--sd_menu end-->
+		<div class="sd_menu m_linkz">
+			<ul class="mm_menu">
+				<li><a href="#">About</a></li>
+				<li><a href="#">Community Rules </a></li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms</a></li>
+				<li><a href="#">Blogs</a></li>
+				<li><a href="#">Contracts </a></li>
+				<li><a href="#">Donate</a></li>
+				<li><a href="#">FAQ</a></li>
+			</ul>
+			<span>azyrusthemes</span>
+		</div><!--sd_menu end-->
+		<div class="sd_menu bb-0">
+			<ul class="social_links">
+				<li>
+					<a href="#" title="">
+						<i class="icon-facebook-official"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#" title="">
+						<i class="icon-twitter"></i>
+					</a>
+				</li>
+				<li>
+					<a href="#" title="">
+						<i class="icon-instagram"></i>
+					</a>
+				</li>
+			</ul><!--social_links end-->
+		</div><!--sd_menu end-->
+		<div class="dd_menu"></div>
+	</div><!--side_menu end-->
+
+
+	<section class="vds-main">
+		<div class="vidz-row">
+			<!--搜索-->
+			<div class="container">
+				<div id="ssDiv">
+					<div id="searchDiv">
+						<form action="/findLike" method="get">
+							<input type="text" name="string" id="search"><input type="submit" id="searchButton">搜索</input>
+						</form>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				视频类型：
+				<select name="typeId" id="typeId">
+						<option valua="0">全部</option>
+				</select>
+				状况：
+				<select name="money" id="money">
+					<option value="">全部</option>
+					<option value="0">免费</option>
+					<option value="1">付费</option>
+				</select>
+
+				</div>
+
+			</div>
+			<div class="container">
+				<div class="vidz_sec" >
+					<h3>Featured Videos</h3>
+
+					<div class="row" id="row">
+						<div class="col-lg-3 col-md-6 col-sm-6 col-6 full_wdth" th:each="video : ${videoDomain}" id="videoClass">
+							<div class="videoo">
+								<div class="vid_thumbainl">
+									<a th:href="@{'/findVideoById/'+${video.id}}">
+										<img th:src="@{'http://192.168.1.10:7888/images/'+${video.image}}">
+										<span class="watch_later">
+											<i class="icon-watch_later_fill"></i>
+										</span>
+									</a>
+								</div><!--vid_thumbnail end-->
+								<div class="video_info">
+									<h3 th:text="${video.name}"></h3>
+									<h4 th:text="'播放：'+${video.totalBrowse}"></h4>
+									<span th:text="'点赞：'+${video.totalLike}"></span>
+								</div>
+							</div><!--videoo end-->
+						</div>
+
+					</div>
+
+				</div><!--vidz_list end-->
+			</div><!--vidz_videos end-->
+
+
+	</section><!--vds-main end-->
+
+
+
+</div><!--wrapper end-->
+
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/flatpickr.js}"></script>
+	<script th:src="@{/js/popper.js}"></script>
+	<script th:src="@{/js/bootstrap.min.js}"></script>
+	<script th:src="@{/js/video.js}"></script>
+	<script th:src="@{/js/script.js}"></script>
+	<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+
+</body>
+
+<script>
+	layui.use(['form', 'upload', 'layer'], function () {
+		var form = layui.form;
+		//检查项目添加到下拉框中
+		$.ajax({
+			url: '/findType',
+			dataType: 'json',
+			type: 'post',
+			success: function (data) {
+				$.each(data, function (index, item) {
+					console.log(data)
+					$('#typeId').append(new Option(item.typeName, item.id));// 下拉菜单里添加元素
+				});
+				layui.form.render("select");
+				//重新渲染 固定写法
+			}
+		});
+	})
+	$("#typeId").change(function(){
+		var opt=$("#typeId").val();
+		var opt2=$("#money").val();
+		console.log(opt+"----"+opt);
+		$.ajax({
+			url:"/findVideoByField",
+			type:"get",
+			dataType:"json",
+			data:{
+				typeId:opt,
+				price:opt2
+			},
+			success:function(data){
+				var d=eval(data);
+				var content=d.content;
+				console.log(content);
+				$("#row").empty();
+				for(let i=0;i<content.length;i++){
+					$("#row").append("<div class=\"col-lg-3 col-md-6 col-sm-6 col-6 full_wdth\" th:each=\"video : ${videoDomain}\" id=\"videoClass\"><div class='videoo'><div class='vid_thumbainl'>" +
+							"<a href='/findVideoById/"+content[i].id+"'>" +
+							"<img src='http://192.168.1.10:7888/images/"+content[i].image+"'>" +
+							"<span class='watch_later'>" +
+							"<i class='icon-watch_later_fill'></i>" +
+							"</span>" +
+							"</a>" +
+							"</div>" +
+							"<div class='video_info'>" +
+							"<h3>"+content[i].name+"</h3>" +
+							"<h4>播放："+content[i].totalBrowse+"</h4>" +
+							"<span>点赞："+content[i].totalLike+"</span>" +
+							"</div></div></div>")
+				}
+
+			}
+		})
+	});
+
+	$("#money").change(function(){
+		var opt=$("#money").val();
+		var opt2=$("#typeId").val();
+		console.log(opt+"----"+opt2);
+		$.ajax({
+			url:"/findVideoByField",
+			type:"get",
+			dataType:"json",
+			data:{
+				price:opt,
+				typeId:opt2
+			},
+			success:function(data){
+				var d=eval(data);
+				var content=d.content;
+				console.log(content);
+				$("#row").empty();
+				for(let i=0;i<content.length;i++){
+					$("#row").append("<div class=\"col-lg-3 col-md-6 col-sm-6 col-6 full_wdth\" th:each=\"video : ${videoDomain}\" id=\"videoClass\"><div class='videoo'><div class='vid_thumbainl'>" +
+							"<a href='/findVideoById/"+content[i].id+"'>" +
+							"<img src='http://192.168.1.10:7888/images/"+content[i].image+"'>" +
+							"<span class='watch_later'>" +
+							"<i class='icon-watch_later_fill'></i>" +
+							"</span>" +
+							"</a>" +
+							"</div>" +
+							"<div class='video_info'>" +
+							"<h3>"+content[i].name+"</h3>" +
+							"<h4>播放："+content[i].totalBrowse+"</h4>" +
+							"<span>点赞："+content[i].totalLike+"</span>" +
+							"</div></div></div>")
+				}
+			}
+		})
+	});
+</script>
+
+</html>

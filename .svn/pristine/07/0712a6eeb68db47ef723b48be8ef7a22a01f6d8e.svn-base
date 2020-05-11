@@ -1,0 +1,89 @@
+package com.znsd.sportscommodity.getType.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.znsd.sportsbean.commodity.CommodityTypeDomain;
+import com.znsd.sportscommodity.getType.service.CommodittypeDbService;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.UUID;
+
+/**
+ * (CommodittypeDb)表控制层
+ *
+ * @author makejava
+ * @since 2020-05-04 08:51:30
+ */
+@RestController
+@RequestMapping("type")
+public class CommodittypeDbController {
+    /**
+     * 服务对象
+     */
+    @Resource
+    private CommodittypeDbService commodittypeDbService;
+
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param id 主键
+     * @return 单条数据
+     */
+    @GetMapping("selectOne")
+    public CommodityTypeDomain selectOne(String id) {
+        return this.commodittypeDbService.queryById(id);
+    }
+
+    /**
+     * 查询所有数据(包含商品)
+     *
+     * @param
+     * @return 所有类型数据
+     */
+    @GetMapping
+    public List<CommodityTypeDomain> queryAll(int offset, int limit){
+        return this.commodittypeDbService.queryAllByLimit(offset,limit);
+    }
+    /**
+     * 前台传对象后台增加
+     *
+     * @param commodityTypeDomain 类对象
+     * @return 无
+     */
+
+    @PostMapping
+    public void insert(CommodityTypeDomain commodityTypeDomain){
+        commodityTypeDomain.setCommodityid(UUID.randomUUID().toString().replace("-", "").toLowerCase());
+        this.commodittypeDbService.insert(commodityTypeDomain);
+    }
+    /**
+     * 前台传id后台删除
+     *
+     * @param id 对象id
+     * @return 无
+     */
+
+    @DeleteMapping
+    public void delete(String id){
+        this.commodittypeDbService.deleteById(id);
+    }
+
+
+    /**
+     * 前台传对象后台修改
+     *
+     * @param commodityTypeDomain 对象
+     * @return 无
+     */
+    @PutMapping
+    public void update(CommodityTypeDomain commodityTypeDomain){
+        this.commodittypeDbService.update(commodityTypeDomain);
+    }
+
+    @CrossOrigin(origins = "*")
+    @GetMapping("getType")
+    public List<CommodityTypeDomain> queryAll(){
+        return this.commodittypeDbService.queryAll();
+    };
+}

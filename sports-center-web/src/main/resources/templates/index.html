@@ -1,0 +1,527 @@
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap HelloWorld</title>
+
+    <!-- Bootstrap -->
+    <link th:href="@{css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:src="@{/static/js/jquery-3.5.1.min.js}" rel="stylesheet"/>
+    <link th:src="@{/static/js/bootstrap.min.js}" rel="stylesheet"/>
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+
+</head>
+
+<style>
+    .head {
+        background-color: whitesmoke;
+        text-decoration: none;
+        width: 100%;
+        position: absolute;
+        top: 0px;
+        text-align: right;
+        border-bottom: 1px solid red;
+        padding-right: 140px;
+        letter-spacing: 2pt;
+        line-height: 50px;
+    }
+
+    .head a {
+        color: #000000;
+    }
+
+    a:link, a:visited {
+        text-decoration: none; /*超链接无下划线*/
+    }
+
+    a:hover {
+        color: red;
+    }
+
+    .media-body {
+        width: 1200px;
+        height: 800px;
+        display: flex;
+        position: relative;
+        left: 9%;
+    }
+
+    .media-body #boder_left {
+        background-color: whitesmoke;
+        width: 14%;
+        height: 400px;
+        margin: 10px;
+        margin-left: 25px;
+    }
+
+    ul {
+        text-align: center;
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    li {
+        list-style-type: none;
+    }
+
+    .li_head {
+        text-align: center;
+        height: 60px;
+        padding-top: 23px;
+    }
+
+    .li_head a {
+        color: #A94442;
+    }
+
+    ul li + li {
+        padding-top: 5px;
+        line-height: 30px;
+        border-bottom: #A6E1EC 0.5px solid;
+    }
+
+    ul li a {
+        color: #000000;
+    }
+
+    ul li ul li a {
+        color: #8C8C8C;
+    }
+
+    .center_left_image {
+        margin-top: 25px;
+    }
+
+    /* -------------------------------------------- */
+
+    .media-body #boder_center {
+        width: 60%;
+        margin: 10px;
+    }
+
+    .center_first {
+        margin: 3px;
+        height: 155px;
+        background: url(../static/img/image/backgroung.png);
+        background-size: 100% 100%;
+    }
+
+    .center_first_one {
+        margin: 3px;
+        height: 50%;
+    }
+
+    .center_first_one div:first-child {
+        float: left;
+        width: 65%;
+        height: 85%;
+        margin-top: 14px;
+        margin-left: 3px;
+    }
+
+    .center_child {
+        width: 40%;
+        height: 100%;
+        margin-left: 5px;
+    }
+
+    .center_child div:first-child {
+        margin: 0px;
+        padding: 0px;
+        width: 40%;
+        height: 100%;
+    }
+
+    #username {
+        margin: 1px;
+        text-align: center;
+        width: 58%;
+        height: 70%;
+    }
+
+    #center_a {
+        color: red;
+        text-align: center;
+        line-height: 23px;
+        font-size: 8px;
+    }
+
+    .center_address {
+        margin-top: 8px;
+        padding-left: 10px;
+        padding-top: 10px;
+        float: right;
+        width: 34%;
+        height: 80%;
+    }
+
+    .center_secand {
+        margin: 3px;
+        height: 150px;
+    }
+
+    #center_secand_one {
+        font-size: 15px;
+        margin: 4px;
+    }
+
+    #center_secand_two {
+        width: 10px;
+        font-size: 15px;
+        margin: 4px;
+    }
+
+    .center_secand_tr td {
+        height: 40px;
+        width: 160px;
+        text-align: center;
+    }
+
+    table tr:first-child {
+        font-size: 28px;
+    }
+
+    .center_secand_tr_two {
+        font-size: 14px;
+        height: 30px;
+        width: 160px;
+        text-align: center;
+    }
+
+    .center_secand_tr_three {
+        line-height: 4px;
+        height: 55px;
+        width: 160px;
+        text-align: center;
+    }
+
+
+    .center_thired {
+        background-color: whitesmoke;
+        margin: 3px;
+        height: auto;
+    }
+
+    .center_thired_one {
+        height: 45%;
+    }
+
+    .center_thired_one div:first-child {
+        height: 20%;
+    }
+
+    div p:first-child {
+        padding-top: 5px;
+        padding-left: 10px;
+        float: left;
+    }
+
+    .center_thired_one div a {
+        color: #000000;
+        padding-top: 5px;
+        padding-right: 10px;
+        float: right;
+    }
+
+    .center_thired_one div:last-child {
+        height: 30%;
+    }
+
+    .center_thired_trOne {
+        width: 100%;
+    }
+
+    .center_thired_trOne tr td {
+        text-align: center;
+        width: 12px;
+        border-top: #000000 1px solid;
+    }
+
+
+    .center_thired_trTwo tr td {
+        padding-left: 52px;
+        text-align: center;
+        width: 200px;
+        font-size: 14px;
+    }
+
+    .center_thired_trTwo tr td p {
+        text-align: center;
+    }
+
+    .center_thired_two {
+        margin-top: 2px;
+    }
+
+
+    .media-body #boder_right {
+        width: 170px;
+        margin: 10px;
+    }
+
+    .right_one {
+        height: 200px;
+        text-align: center;
+        margin-top: 3px;
+    }
+
+    .right_one div:first-child {
+        padding: 1px;
+        padding-bottom: 10px;
+    }
+
+    .right_two {
+        height: 200px;
+        margin-top: 15px;
+    }
+
+    .right_two div:first-child {
+        background-color: ghostwhite;
+        padding-top: 3px;
+        text-align: center;
+        margin-top: 3px;
+        height: 30px;
+    }
+
+    .right_two div:last-child {
+        padding: 1px;
+        width: auto;
+        height: 167px;
+    }
+
+    .right_three {
+        height: 180px;
+        margin-top: 15px;
+    }
+
+    .right_three div:first-child {
+        background-color: ghostwhite;
+        padding-top: 3px;
+        text-align: center;
+        margin-top: 3px;
+        height: 30px;
+    }
+
+    .right_three div:last-child {
+        padding: 1px;
+        width: auto;
+        height: 165px;
+    }
+
+    .media_body_left {
+        padding-top: 100px;
+        width: 120px;
+    }
+
+    .body_box {
+        width: 100%;
+        height: 100%;
+    }
+
+    span {
+        font-size: 15px;
+    }
+
+    #head_img {
+        width: 120px;
+        height: 40px;
+        border: #000000 1px solid;
+    }
+</style>
+<div class="page-header">
+    <div class="head">
+        <a href="#">商城首页</a>
+        <a href="index.html">个人中心</a>
+    </div>
+</div>
+
+
+<div class="media-body">
+    <div class="media_body_left">
+        <img src="../static/img/image/right_1.png"/>
+    </div>
+
+    <div id="boder_left">
+        <div>
+            <ul>
+                <li class="li_head">
+                    <a href="#"> 个人中心 </a>
+                </li>
+
+                <li>
+                    <span> 个人资料 </span>
+                    <ul>
+                        <li>
+                            <a href="personalData.html">个人信息</a>
+                        </li>
+
+                        <li>
+                            <a href="receivingAddress.html">收货地址</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <span> 我的交易 </span>
+                    <ul>
+                        <li>
+                            <a href="#">订单管理</a>
+                        </li>
+
+                        <li>
+                            <a href="change.html">售后</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <span> 我的小窝 </span>
+                    <ul>
+                        <li>
+                            <a href="subscribe.html">订阅</a>
+                        </li>
+                        <li>
+                            <a href="collection.html">收藏</a>
+                        </li>
+                        <li>
+                            <a href="history.html">足迹</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="center_left_image">
+            <img src="../static/img/image/life.png" width="100%" height="100%"/>
+        </div>
+    </div>
+
+    <div id="boder_center">
+        <div class="center_first">1
+            <div class="center_first_one">
+                <div>
+                    <div style="display: none;"></div>
+                    <div class="center_child">
+                        <div>
+                            <a href="#"><img src="../static/img/image/touxiang.jpg" width="99%" height="99%"></a>
+                        </div>
+                        <div>
+                            <div id="username">123</div>
+                            <div id="center_a">我是大会员</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="center_address">
+                    <a href="receivingAddress.html" style="color: orangered"> 我的收货地址 </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="center_secand">
+            <div id="center_secand_one">个人资产</div>
+            <table>
+                <tr class="center_secand_tr">
+                    <td>0</td>
+                    <td>0.00</td>
+                    <td>0</td>
+                    <td>0.00</td>
+                </tr>
+                <tr class="center_secand_tr_two">
+                    <td>优惠券</td>
+                    <td>余额</td>
+                    <td>积分</td>
+                    <td>白条本月待还</td>
+                </tr>
+                <tr class="center_secand_tr_three">
+                    <td>
+                        <a href="#">领劵</a>
+                    </td>
+                    <td>
+                        <a href="#">充值</a>
+                    </td>
+                    <td>
+                        <a href="#">去换东西</a>
+                    </td>
+                    <td>
+                        <a href="#">去还钱</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="center_thired">
+            <div class="center_thired_one">
+                <div>
+                    <p>我的订单</p>
+                    <a href="#">全部订单</a>
+                </div>
+                <table class="center_thired_trOne">
+                    <tr>
+                        <td><a href="#"><img src="../static/img/image/send.png"/></a></td>
+                        <td><a href="#"><img src="../static/img/image/pay.png"/></a></td>
+                        <td><a href="#"><img src="../static/img/image/comment.png"/></a></td>
+                        <td><a href="#"><img src="../static/img/image/refund.png"/></a></td>
+                    </tr>
+                </table>
+                <table class="center_thired_trTwo">
+                    <tr>
+                        <td>
+                            <p>已签收</p>
+                            <span></span>
+                        </td>
+                        <td>
+                            <p>未签收</p>
+                            <span></span>
+                        </td>
+                        <td>
+                            <p>评论</p>
+                            <span></span>
+                        </td>
+                        <td>
+                            <p>退换货</p>
+                            <span></span>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="center_thired_two">
+                <a href="#"><img src="../static/img/image/diceng.png" height="100%" width="100%"/></a>
+            </div>
+        </div>
+    </div>
+
+    <div id="boder_right">
+        <div class="right_two">
+            <div>今日新品，特价秒杀</div>
+            <div>
+                <a href="#"><img src="../static/img/image/qicai_1.png" width="100%" height="100%"/></a>
+            </div>
+        </div>
+
+        <div class="right_two">
+            <div>今日新品，特价秒杀</div>
+            <div>
+                <a href="#"><img src="../static/img/image/qicai_1.png" width="100%" height="100%"/></a>
+            </div>
+        </div>
+
+        <div class="right_three">
+            <div>热卖推荐</div>
+            <div>
+                <a href="#"><img src="../static/img/image/qicai_2.png" width="100%" height="100%"/></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    <img src="../static/img/image/dibu.png" width="100%"/>
+</div>
+</body>
+</html>

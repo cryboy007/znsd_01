@@ -1,0 +1,30 @@
+package com.znsd.sportslog.controller;
+
+import com.github.pagehelper.PageInfo;
+import com.znsd.sportsbean.commodity.CommodityAndTypeDomain;
+import com.znsd.sportsbean.commodity.ShoppingDomain;
+import com.znsd.sportslog.service.LikeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.HashSet;
+import java.util.List;
+
+@Controller
+public class LikeController {
+    @Autowired
+    LikeService likeService;
+
+    /**
+     * 根据分析获取可能喜好商品
+     *
+     * @return
+     */
+    @RequestMapping("likeShop")
+    @ResponseBody
+    public HashSet<CommodityAndTypeDomain> getLikeShop(String userid) {
+        return likeService.getLikeShop(userid);
+    }
+}

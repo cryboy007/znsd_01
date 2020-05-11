@@ -1,0 +1,115 @@
+package com.znsd.sportsbean.video;
+
+import java.util.Date;
+
+/**
+ * 视频集合表(video_collection)，和视频表关联
+ */
+public class VideoConllectionDomain {
+    private String id;//视频集合编号
+    private String name;//视频集合名称
+    private String dec;//视频集合描述
+    private String typeId;//视频集合类型编号
+    private String image;//视频集合封面
+    private Double price;//视频集合单价
+    private Date times;//上传时间
+    private Integer integral;//视频积分
+    private String userId;//上传用户编号
+    private Integer status;//视频状态（0未审核，1已审核，2已禁用）
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDec() {
+        return dec;
+    }
+
+    public void setDec(String dec) {
+        this.dec = dec;
+    }
+
+    public String getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(String typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Date getTimes() {
+        return times;
+    }
+
+    public void setTimes(Date times) {
+        this.times = times;
+    }
+
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
+
+    @Override
+    public String toString() {
+        return "VideoConllectionDomain{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", dec='" + dec + '\'' +
+                ", typeId='" + typeId + '\'' +
+                ", image='" + image + '\'' +
+                ", price=" + price +
+                ", times=" + times +
+                ", integral=" + integral +
+                ", userId='" + userId + '\'' +
+                ", status=" + status +
+                '}';
+    }
+}

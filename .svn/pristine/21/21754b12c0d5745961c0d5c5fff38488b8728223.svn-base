@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportsuser.Mapper.AddressMapper">
+
+    <insert id="addAddress" parameterType="UserAddressDomain">
+        insert into sports_online.useraddress_db (userid, address) values (#{userid},#{address});
+    </insert>
+
+
+    <select id="queryAddress" resultType="UserAddressDomain">
+        select * from sports_online.useraddress_db where userid = #{userid};
+    </select>
+
+    <select id="queryId" resultType="com.znsd.sportsbean.user.UserAddressDomain">
+        select * from sports_online.useraddress_db where id = #{addressId};
+    </select>
+
+    <update id="updateAddress">
+        update sports_online.useraddress_db set address = #{address} where id = #{id};
+    </update>
+
+
+    <delete id="deleteAddress">
+        delete from sports_online.useraddress_db where id = #{id};
+    </delete>
+
+</mapper>

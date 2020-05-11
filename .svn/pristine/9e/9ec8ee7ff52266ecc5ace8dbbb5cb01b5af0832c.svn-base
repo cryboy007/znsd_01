@@ -1,0 +1,17 @@
+server.port=8006
+spring.thymeleaf.mode=HTML
+spring.thymeleaf.encoding=UTF-8
+spring.thymeleaf.cache=true
+spring.mvc.view.prefix=/
+spring.mvc.view.suffix=.html
+image.path=D:/Program Files/sports/images/
+video.path=D:/Program Files/sports/video/
+temp.path=D:/Program Files/sports/temp/
+image.server=192.168.1.10:7999
+server.tomcat.max-http-post-size=-1
+spring.servlet.multipart.max-request-size=1024MB
+spring.servlet.multipart.max-file-size=1024MB
+server.tomcat.max-http-form-post-size=1000MB
+server.undertow.max-http-post-size=1000MB
+server.jetty.max-http-form-post-size=1000MB
+debug=false

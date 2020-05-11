@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!--suppress ALL-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div  th:replace="navigation"></div>
+<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+<style type="text/css">
+    table{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    table.hovertable {
+        font-family: verdana,arial,sans-serif;
+        font-size:11px;
+        color:#333333;
+        border-width: 1px;
+        border-color: #999999;
+        border-collapse: collapse;
+    }
+    table.hovertable th {
+        background-color:#c3dde0;
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #a9c6c9;
+    }
+    table.hovertable tr {
+        background-color:#d4e3e5;
+    }
+    table.hovertable td {
+        border-width: 1px;
+        padding: 8px;
+        border-style: solid;
+        border-color: #a9c6c9;
+    }
+</style>
+<!-- Table goes in the document BODY -->
+<table class="hovertable">
+    <tr>
+        <th>订单编号</th><th>商品名称</th><th>商品价格</th><th>商品数量</th><th>当前状态</th><th>收货地址</th><th>总付款</th><th>操作</th>
+    </tr>
+
+        <tr onmouseover="this.style.backgroundColor='#ffff66';" onmouseout="this.style.backgroundColor='#d4e3e5';" th:each="i : ${orderList}">
+        <td th:text="${i.id}"></td><td th:text="${i.commodityDomain.name}"></td><td th:text="${i.commodityDomain.price}"></td><td th:text="${i.number}"></td><td th:text="${i.status}"></td><td th:text="${i.address}"></td><td th:text="${i.sum}"></td><td>123</td>
+        </tr>
+</table>
+
+
+</body>
+</html>

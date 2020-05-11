@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>健身平台后台管理系统</title>
+    <link rel="stylesheet" href="./static/common/layui/css/layui.css">
+    <link rel="stylesheet" href="./static/admin/css/style.css">
+    <script src="./static/common/layui/layui.js"></script>
+    <script src="./static/common/jquery-3.3.1.min.js"></script>
+    <script src="./static/common/vue.min.js"></script>
+</head>
+
+<body>
+<div id="app">
+    <!--顶栏-->
+    <header>
+        <h1 style="font-size: 20px;">
+            <a v-text="webname" href="index.html"></a>
+        </h1>
+        <div class="breadcrumb">
+            <i class="layui-icon">&#xe715;</i>
+            <ul>
+                <li v-for="vo in address">
+                    <a v-text="vo.name" :href="vo.url"></a> <span>/</span>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="main" id="app">
+        <!--左栏-->
+        <div class="left">
+            <ul class="cl">
+                <!--顶级分类-->
+                <li v-for="vo,index in menu" :class="{hidden:vo.hidden}">
+                    <a href="javascript:;" :class="{active:vo.active}" @click="onActive(index)">
+                        <i class="layui-icon" v-html="vo.icon"></i>
+                        <span v-text="vo.name"></span>
+                        <i class="layui-icon arrow" v-show="vo.url.length==0">&#xe61a;</i> <i v-show="vo.active"
+                                                                                              class="layui-icon active">&#xe623;</i>
+                    </a>
+                    <!--子级分类-->
+                    <div v-for="vo2,index2 in vo.list">
+                        <a href="javascript:;" :class="{active:vo2.active}" @click="onActive(index,index2)"
+                           v-text="vo2.name"></a>
+                        <i v-show="vo2.active" class="layui-icon active">&#xe623;</i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--右侧-->
+        <div class="right">
+
+
+            <div class="layui-row">
+                <div class="layui-col-lg8">
+                    <a href="" class="layui-btn">刷新</a>
+
+                </div>
+
+                <div class="layui-col-lg4" style="text-align: right">
+
+                    <div class="layui-input-inline" style="width: 300px">
+                        <input type="text" name="k" value="" placeholder="手机/用户名/邮箱/昵称" class="layui-input key">
+                    </div>
+                    <button type="button" class="layui-btn sou">搜索</button>
+                </div>
+            </div>
+
+            <table class="layui-table layui-form" id="tab" lay-filter="edits">
+
+            </table>
+
+        </div>
+    </div>
+</div>
+<script src="./static/admin/js/config.js"></script>
+<script src="./static/admin/js/script.js"></script>
+<script>
+
+    layui.use('table', function () {
+        var table = layui.table;
+
+        table.render({
+            elem: '#tab'
+            , url: '/server/video/list'
+            , parseData: function (res) {
+                console.log(res);
+                return {
+                    "code": 0,
+                    "msg": "",
+                    "count": res.totalSize,
+                    "data": res.content
+                };
+            }, cellMinWidth: 80,
+            cols: [[
+                {field: 'id', title: 'ID', sort: true}
+                , {field: 'name', title: '视频标题'}
+                , {
+                    field: 'image', title: '视频封面', templet: "#imgtmp"
+                },
+                , {
+                    field: 'status', title: '视频状态', templet: function (data) {
+                        console.log(data);
+                        if (data.status == 0) {
+                            return "<font color='#DA70D6'><b>待审核</b></font>"
+                        } else if (data.status == 1) {
+                            return "<font color='#458B00'><b>启用</b></font>"
+                        } else {
+                            return "<font color='#CD2626'><b>禁用</b></font>"
+                        }
+                    }
+                }
+                , {field: 'dec', title: '视频简介', width: ''}
+                , {field: 'typeId', title: '视频类型编号', width: ''}
+                , {field: 'price', title: '视频单价', width: ''}
+                , {field: 'times', title: '上传时间', width: ''}
+                , {field: 'integral', title: '视频积分', width: ''}
+                , {field: 'userId', title: '上传用户', width: ''}
+                , {
+                    field: 'video', title: '视频地址', sort: true,
+                    templet: function (d) {
+                        return "<a href='http://192.168.1.10:7888/video/" + d.video + "' target=_blank>" + d.video + "</a>";
+                    }
+                }, {field: 'tool', title: '操作', width: 70, align: 'center', toolbar: '#barDemo'}
+
+            ]]
+            , page: true
+        });
+
+        table.on('tool(edits)', function (obj) {
+            var data = obj.data;
+            console.log(obj.data.id);
+            if (obj.event === 'del') {
+                layer.confirm("确定要删除该条数据吗？", {
+                    icon: 0,
+                    title: '提示',
+                    offset: '150px'
+                }, function (index) {
+                    $.ajax({
+                        type: "post",
+                        data: {id: obj.data.id},
+                        url: "/server/video/delete",
+                        success: function (response) {
+                            console.log(response);
+                            layer.msg(response);
+                            window.parent.location.reload();
+                        }, error: function (error) {
+                            console.log(error);
+                            layer.msg(error);
+                        }
+                    })
+                    layer.close(index);
+                })
+            }
+        });
+    });
+</script>
+
+<script type="text/html" id="imgtmp">
+    <img src="http://192.168.1.10:7888/images/{{d.image}}">
+</script>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del" lay-filter="delete">删除</a>
+</script>
+
+<style type="text/css">
+    .layui-table-cell {
+        height: auto;
+        line-height: 28px;
+    }
+</style>
+</body>
+
+</html>

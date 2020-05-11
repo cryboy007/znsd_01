@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>视频播放</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!--<link rel="icon" href="images/Favicon.png">-->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/animate.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/fontello.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/fontello-codes.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/thumbs-embedded.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/video-js.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/responsive.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/color.css}">
+	<link rel="stylesheet" th:href="@{/layui/css/layui.css}"  media="all">
+	<link rel="stylesheet" th:href="@{/css/animation.css}">
+</head>
+
+<style>
+	.clearfix {
+		*zoom: 1;
+	}
+	.clearfix:before,
+	.clearfix:after {
+		display: table;
+		content: "";
+		line-height: 0;
+	}
+	.clearfix:after {
+		clear: both;
+	}
+	html {
+		font-size: 100%;
+		-webkit-text-size-adjust: 100%;
+		-ms-text-size-adjust: 100%;
+	}
+	a:focus {
+		outline: thin dotted #333;
+		outline: 5px auto -webkit-focus-ring-color;
+		outline-offset: -2px;
+	}
+	a:hover,
+	a:active {
+		outline: 0;
+	}
+	button,
+	input,
+	select,
+	textarea {
+		margin: 0;
+		font-size: 100%;
+		vertical-align: middle;
+	}
+	button,
+	input {
+		*overflow: visible;
+		line-height: normal;
+	}
+	button::-moz-focus-inner,
+	input::-moz-focus-inner {
+		padding: 0;
+		border: 0;
+	}
+	body {
+		margin: 0;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-size: 14px;
+		line-height: 20px;
+		color: #333;
+		background-color: #fff;
+	}
+	a {
+		color: #08c;
+		text-decoration: none;
+	}
+	a:hover {
+		color: #005580;
+		text-decoration: underline;
+	}
+	.row {
+		margin-left: -20px;
+		*zoom: 1;
+	}
+	.row:before,
+	.row:after {
+		display: table;
+		content: "";
+		line-height: 0;
+	}
+	.row:after {
+		clear: both;
+	}
+	[class*="span"] {
+		float: left;
+		min-height: 1px;
+		margin-left: 20px;
+	}
+	.container,
+	.navbar-static-top .container,
+	.navbar-fixed-top .container,
+	.navbar-fixed-bottom .container {
+		width: 940px;
+	}
+	.span12 {
+		width: 940px;
+	}
+	.span11 {
+		width: 860px;
+	}
+	.span10 {
+		width: 780px;
+	}
+	.span9 {
+		width: 700px;
+	}
+	.span8 {
+		width: 620px;
+	}
+	.span7 {
+		width: 540px;
+	}
+	.span6 {
+		width: 460px;
+	}
+	.span5 {
+		width: 380px;
+	}
+	.span4 {
+		width: 300px;
+	}
+	.span3 {
+		width: 220px;
+	}
+	.span2 {
+		width: 140px;
+	}
+	.span1 {
+		width: 60px;
+	}
+	[class*="span"].pull-right,
+	.row-fluid [class*="span"].pull-right {
+		float: right;
+	}
+	.container {
+		margin-right: auto;
+		margin-left: auto;
+		*zoom: 1;
+	}
+	.container:before,
+	.container:after {
+		display: table;
+		content: "";
+		line-height: 0;
+	}
+	.container:after {
+		clear: both;
+	}
+	p {
+		margin: 0 0 10px;
+	}
+	.lead {
+		margin-bottom: 20px;
+		font-size: 21px;
+		font-weight: 200;
+		line-height: 30px;
+	}
+	small {
+		font-size: 85%;
+	}
+	h1 {
+		margin: 10px 0;
+		font-family: inherit;
+		font-weight: bold;
+		line-height: 20px;
+		color: inherit;
+		text-rendering: optimizelegibility;
+	}
+	h1 small {
+		font-weight: normal;
+		line-height: 1;
+		color: #999;
+	}
+	h1 {
+		line-height: 40px;
+	}
+	h1 {
+		font-size: 38.5px;
+	}
+	h1 small {
+		font-size: 24.5px;
+	}
+	body {
+		margin-top: 90px;
+	}
+	.header {
+		position: fixed;
+		top: 0;
+		left: 50%;
+		margin-left: -480px;
+		background-color: #fff;
+		border-bottom: 1px solid #ddd;
+		padding-top: 10px;
+		z-index: 10;
+	}
+	.footer {
+		color: #ddd;
+		font-size: 12px;
+		text-align: center;
+		margin-top: 20px;
+	}
+	.footer a {
+		color: #ccc;
+		text-decoration: underline;
+	}
+	.the-icons {
+		font-size: 14px;
+		line-height: 24px;
+	}
+	.switch {
+		position: absolute;
+		right: 0;
+		bottom: 10px;
+		color: #666;
+	}
+	.switch input {
+		margin-right: 0.3em;
+	}
+	.codesOn .i-name {
+		display: none;
+	}
+	.codesOn .i-code {
+		display: inline;
+	}
+	.i-code {
+		display: none;
+	}
+	@font-face {
+		font-family: 'fontello';
+		src: url('./font/fontello.eot?82547145');
+		src: url('./font/fontello.eot?82547145#iefix') format('embedded-opentype'),
+		url('./font/fontello.woff?82547145') format('woff'),
+		url('./font/fontello.ttf?82547145') format('truetype'),
+		url('./font/fontello.svg?82547145#fontello') format('svg');
+		font-weight: normal;
+		font-style: normal;
+	}
+	.demo-icon
+	{
+		font-family: "fontello";
+		font-style: normal;
+		font-weight: normal;
+		speak: none;
+
+		display: inline-block;
+		text-decoration: inherit;
+		width: 1em;
+		margin-right: .2em;
+		text-align: center;
+
+		font-variant: normal;
+		text-transform: none;
+
+		line-height: 1em;
+
+		margin-left: .2em;
+
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+
+	}
+</style>
+<body>
+<div id="times"></div>
+<div class="wrapper">
+
+
+
+	<section class="mn-sec">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="mn-vid-sc single_video">
+						<div class="vid-1">
+							<div id="videoId" th:text="${videoDomain.getId()}" hidden="hidden"></div>
+							<div class="video-name" ><h1 th:text="${videoDomain.name}"></h1></div>
+							<div class="vid-pr">
+								<video
+										id="my-video"
+										class="video-js"
+										controls
+										preload="auto"
+										width="1280"
+										height="720"
+										th:poster="@{'http://192.168.1.10:7888/images/'+${videoDomain.image}}"
+										data-setup="{}"
+								>
+									<source th:src="@{'http://192.168.1.10:7888/video/'+${videoDomain.video}}" type="video/mp4" />
+
+								</video>
+							</div><!--vid-pr end-->
+							<div class="vid-info">
+								<h3 th:text="${videoDomain.dec}"></h3>
+								<div class="info-pr">
+									<span >播放量：</span>
+									<span th:text="${list[0]}"></span>
+									<ul class="pr_links">
+										<li>
+											<button data-toggle="tooltip" data-placement="top" id="likeButton" title="赞">
+												<i class="demo-icon icon-thumbs-up-alt">&#xf164;</i>
+											</button>
+											<div id="mylike" th:text="${userVideoDomain.like}" style="display: none"></div>
+											<span>点赞量：</span>
+											<span id="likeList" th:text="${list[1]}"></span>
+										</li>
+										<li>
+											<button data-toggle="tooltip" data-placement="top" id="collectButton" title="收藏">
+												<i class="demo-icon icon-star-empty">&#xe800;</i>
+											</button>
+											<div id="mycollect" th:text="${userVideoDomain.collect}" style="display: none"></div>
+											<span>收藏量</span>
+											<span id="collectList" th:text="${list[2]}"></span>
+										</li>
+									</ul>
+									<div class="clearfix"></div>
+									<div th:text="${videoDomain.times}"></div>
+								</div><!--info-pr end-->
+								<!--价格-->
+								<div>价格：<span th:text="${videoDomain.price}"></span> <button type="button" class="layui-btn" id="buyVideo" th:if="${status}==0">订阅</button><button type="button" class="layui-btn" id="noBuyVideo" th:if="${status}==1" disabled="disabled">已订阅</button></span>
+									<p><span>总评分:</span><div id="sumScore" th:text="${list[3]}"></div></p>
+									<!--评分-->
+									<p><span>我的评分:</span><div id="score" th:text="${userVideoDomain.score}"></div></p>
+
+								</div><!--vid-info end-->
+							</div><!--vid-1 end-->
+							<div class="abt-mk">
+								<div class="info-pr-sec">
+									<div class="vcp_inf cr">
+										<div class="vc_hd">
+											<img th:src="@{'http://192.168.1.10:7888/images/'+${userDomain.image}}" alt="">
+										</div>
+										<div class="vc_info pr">
+											<h4><a href="#" title="" th:text="${userDomain.name}"></a></h4>
+											<span th:text="${userDomain.birthday}"></span>
+										</div>
+									</div><!--vcp_inf end-->
+									<ul class="chan_cantrz">
+										<li>
+											<a href="#" title="" class="donate">Donate</a>
+										</li>
+
+									</ul><!--chan_cantrz end-->
+
+									<div class="clearfix"></div>
+								</div>
+								<div class="clearfix"></div>
+							</div><!--abt-mk end-->
+							<div class="cmt-bx">
+								<ul class="cmt-pr">
+									<li><span th:text="${number}"></span> 条评论</li>
+								</ul>
+								<div class="clearfix"></div>
+								<div class="clearfix"></div>
+								<div class="vcp_inf pc">
+									<div class="vc_hd">
+										<img th:src="@{/img/th1.png}" alt="">
+									</div>
+									<form action="/insertComment" method="post">
+										<input type="text" id="comment" name="comment" placeholder="输入你的评论" required="required">
+										<input type="text"  name="videoId" th:value="${videoDomain.getId()}" style="display: none">
+										<button type="submit" id="commentSubmit">评论</button>
+									</form>
+									<div class="clearfix"></div>
+									<div class="rt-cmt">
+										<a href="#" title="">
+											<i class="icon-cancel"></i>
+										</a>
+										<div class="clearfix"></div>
+									</div><!--vcp_inf end-->
+								</div><!--cmt-bx end-->
+								<ul class="cmn-lst">
+									<li th:each="comment : ${videoCommentDomain}">
+										<div class="vcp_inf">
+											<div class="vc_hd">
+												<img th:src="@{'http://192.168.1.10:7888/images/'+${comment.user.image}}" alt="">
+											</div>
+											<div class="coments">
+												<h2 th:text="${comment.user.name}"> <small class="posted_dt" th:text="${comment.times}"></small></h2>
+												<p th:text="${comment.comment}"></p>
+												<ul class="cmn-i">
+													<li>
+														<a href="#" title="">
+															<i class="icon-thumbs_up"></i>
+														</a>
+														<span>680</span>
+													</li>
+													<li>
+														<a href="#" title="">
+															<i class="icon-thumbs_down"></i>
+														</a>
+														<span>21</span>
+													</li>
+												</ul>
+												<div id="fenye"></div>
+												<a href="#" title="">View all 164 replies</a>
+											</div><!--coments end-->
+										</div><!--vcp_inf end-->
+									</li>
+
+								</ul><!--comment list end-->
+							</div>
+						</div><!--mn-vid-sc end--->
+					</div><!---col-lg-9 end-->
+				</div>
+			</div>
+
+	</section><!--mn-sec end-->
+
+
+</div><!--wrapper end-->
+
+<form action="/readVideo" method="post" class="layui-form" id="goumaiDiv" style="display:none">
+	<div class="layui-form-item">
+		<label class="layui-form-label">原价：</label>
+		<div class="layui-input-block">
+			<input type="text" name="price" lay-verify="required" th:value="${videoDomain.price}" class="layui-input" id="price" style="width:100px" readonly>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">剩余积分：</label>
+		<div class="layui-input-block">
+			<input type="text" name="integral" lay-verify="required" th:value="${userDomain2.integral}" class="layui-input" id="integral" style="width:100px" readonly>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">余额：</label>
+		<div class="layui-input-block">
+			<input type="text" name="money" lay-verify="required" th:value="${userDomain2.money}" class="layui-input" id="money" style="width:100px" readonly>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">积分可抵扣：</label>
+		<div class="layui-input-block">
+			<input type="text" name="diko" lay-verify="required" th:value="${userDomain2.integral}/10" class="layui-input" id="diko" style="width:100px" readonly>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">需付款：</label>
+		<div class="layui-input-block">
+			<input type="text" name="fukuan" lay-verify="required" th:value="${videoDomain.price}-(${userDomain2.integral}/10)<0 ? 0 : ${videoDomain.price}-(${userDomain2.integral}/10)" class="layui-input" id="fukuan" style="width:100px" readonly>
+		</div>
+	</div>
+	<div th:if="${videoDomain.price}-${userDomain2.integral}/10-${userDomain2.money}>0" style="color: red;">余额不足</div>
+
+	<input type="text" name="acthorId" th:value="${userDomain.id}" style="display: none"/>
+	<input type="text" name="videoId" th:value="${videoDomain.id}" style="display:none"/>
+	<input type="text"  name="userId" th:value="${userDomain2.id}" style="display: none"/>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="bySubmit">购买</button>
+		</div>
+	</div>
+</form>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/popper.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/video.js}"></script>
+<script th:src="@{/js/script.js}"></script>
+<script th:src="@{/layui/layui.js}" charset="utf-8"></script>
+</body>
+
+<script>
+
+	$.ajax({
+		url:"/insertHistory",
+		type:"post",
+		dataType:"json",
+		data:{
+			videoId:$("#videoId").text()
+		},
+		success:function(data){
+			console.log(data);
+		}
+	})
+	layui.use(['rate'], function() {
+		var rate = layui.rate;
+		//显示文字
+		rate.render({
+			elem: '#score'
+			, value:$("#score").text() //初始值
+			, text: true //开启文本
+			,choose: function(value){
+				$.ajax({
+					url:"/updateUserLikeOrCollectOrScore",
+					type:"post",
+					dataType:"json",
+					data:{
+						videoId: $("#videoId").text(),
+						score:value
+					},
+					success:function(data){
+
+					}
+				})
+			}
+		});
+
+	})
+	layui.use(['rate'], function() {
+		var rate = layui.rate;
+		rate.render({
+			elem: '#sumScore'
+			,value:$("#sumScore").text() //初始值
+			,text: true
+			,readonly:true
+		})
+	})
+
+	/*订阅*/
+	layui.use(['layer','form'], function(){
+
+		var layer=layui.layer;
+		$("#buyVideo").click(function(){
+			layer.open({
+				type:1,
+				area:['500px','600px'],
+				title: '购买'
+				,content: $("#goumaiDiv"),
+				shade: 0,
+				btn: ['取消']
+				,
+				btn1: function(index, layero){
+					layer.close(layer.index);
+					return false;
+				},
+				cancel: function(layero,index){
+					layer.closeAll();
+				}
+
+			});
+		});
+	})
+	var date=0;
+	var date2=0;
+	var total=0;
+	var three=3*60000;
+	var elevideo = document.getElementById("my-video");
+	elevideo.addEventListener('play', function () { //播放开始执行的函数
+		console.log("开始播放");
+		var status=[[${status}]];
+		if(status==0){
+			elevideo.pause();
+			alert("请先订阅该视频！")
+		}else{
+			date=Date.now();
+			console.log(date);
+		}
+	});
+	elevideo.addEventListener('pause', function () { //暂停开始执行的函数
+		console.log("暂停播放");
+		var date2=Date.now();
+		total=total+(date2-date);
+
+		console.log(date2);
+	});
+
+	elevideo.addEventListener('ended', function () { //结束
+		console.log("播放结束");
+		var date2=Date.now();
+		total=total+(date2-date);
+		var count=total/three;
+		total=0;
+		$.ajax({
+			url:"/addIntegral",
+			type:"post",
+			dataType:"json",
+			date:{
+				integral:count
+			}
+		})
+		console.log(date2);
+	}, false);
+
+	window.onbeforeunload = function(){
+		console.log("窗口关闭");
+		if(total!=0){
+			var date2=Date.now();
+			total=total+(date2-date);
+			var count=total/three;
+			total=0;
+			$.ajax({
+				url:"/addIntegral",
+				type:"post",
+				dataType:"json",
+				date:{
+					integral:count
+				}
+			})
+		}
+
+	}
+
+	$("#likeButton").click(function () {
+		var mylike=$("#mylike").text();
+		var likeList=parseInt($("#likeList").text());
+		if(mylike==1){
+			$("#mylike").text(0);
+			$.ajax({
+				url:"/updateUserLikeOrCollectOrScore2",
+				type:"post",
+				dataType:"json",
+				data:{
+					videoId: $("#videoId").text(),
+					like:0
+				},
+				success:function(data){
+					console.log(data+"----------");
+					$("#likeList").text(likeList-1)
+				}
+			})
+		}else{
+			$("#mylike").text(1);
+			$.ajax({
+				url:"/updateUserLikeOrCollectOrScore2",
+				type:"post",
+				dataType:"json",
+				data:{
+					videoId: $("#videoId").text(),
+					like:1
+				},
+				success:function(data){
+					console.log(data);
+					$("#likeList").text(likeList+1)
+				}
+			})
+		}
+	})
+
+	$("#collectButton").click(function () {
+		var mycollect=$("#mycollect").text();
+		var collectList=parseInt($("#collectList").text());
+		if(mycollect==1){
+			$("#mycollect").text(0);
+			$.ajax({
+				url:"/updateUserLikeOrCollectOrScore3",
+				type:"post",
+				dataType:"json",
+				data:{
+					videoId: $("#videoId").text(),
+					collect:0
+				},
+				success:function(data){
+					console.log(data+"----------");
+					$("#collectList").text(collectList-1)
+				}
+			})
+		}else{
+			$("#mycollect").text(1);
+			$.ajax({
+				url:"/updateUserLikeOrCollectOrScore3",
+				type:"post",
+				dataType:"json",
+				data:{
+					videoId: $("#videoId").text(),
+					collect:1
+				},
+				success:function(data){
+					console.log(data);
+					$("#collectList").text(collectList+1)
+				}
+			})
+		}
+	})
+
+	/*分页*/
+	/*layui.use(['laypage', 'layer'], function() {
+		var laypage = layui.laypage
+				, layer = layui.layer;
+		//总页数大于页码总数
+		laypage.render({
+			elem: 'fenye'
+			,limit: 10
+			, limits: [10, 20, 30]
+			, groups: 5
+			, prev: '上一页'                 //上一页文本
+			, next: '下一页'
+			, first: 1                      //首页文本
+			, last: 100
+			, layout: ['prev', 'page', 'next','limit','refresh','skip']
+			, curr: 1
+			,jump: function(obj){
+				//非首次加载 do something
+				if (!first) {
+					//清空以前加载的数据
+					$('tbody').empty();
+					//调用加载函数加载数据
+					showRecord(obj.curr,obj.limit);
+				}
+			}
+		});
+	})*/
+</script>
+</html>

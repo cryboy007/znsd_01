@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="sports-user" />
+        <module name="sports-center-web" />
+        <module name="sports-video-web" />
+        <module name="sports-log" />
+        <module name="sports-commodity" />
+        <module name="sports-root-web" />
+        <module name="sports-image" />
+        <module name="sports-mall-web" />
+        <module name="sports-video" />
+        <module name="sports-bean" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="sports-bean" options="-parameters" />
+      <module name="sports-center-web" options="-parameters" />
+      <module name="sports-commodity" options="-parameters" />
+      <module name="sports-image" options="-parameters" />
+      <module name="sports-log" options="-parameters" />
+      <module name="sports-mall-web" options="-parameters" />
+      <module name="sports-root-web" options="-parameters" />
+      <module name="sports-user" options="-parameters" />
+      <module name="sports-video" options="-parameters" />
+      <module name="sports-video-web" options="-parameters" />
+    </option>
+  </component>
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportsvideo.dao.SubscribeDao">
+
+    <insert id="insertSubscribe" parameterType="com.znsd.sportsbean.video.SubscribeDomain">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select replace(uuid(), '-', '')
+        </selectKey>
+        insert into subscribe_db(id,videoId,userId) values(#{id},#{videoId},#{userId})
+    </insert>
+
+    <select id="getSubscribe" parameterType="com.znsd.sportsbean.video.SubscribeDomain" resultType="int">
+        select count(*) from subscribe_db where videoId=#{videoId} and userId=#{userId}
+    </select>
+
+</mapper>

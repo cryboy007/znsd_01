@@ -1,0 +1,164 @@
+package com.znsd.sportslog.utils;
+
+import com.alibaba.fastjson.JSONObject;
+import com.znsd.sportsbean.log.SystemLogDomain;
+import com.znsd.sportsbean.user.UserDomain;
+import com.znsd.sportslog.annotation.OperationType;
+import com.znsd.sportslog.annotation.SystemControllerLog;
+import com.znsd.sportslog.service.ActionService;
+import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.Signature;
+import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.lang.reflect.Method;
+import java.util.UUID;
+
+
+@Aspect
+@Component
+@SuppressWarnings("all")
+public class SystemLogAspect {
+    @Resource
+    private ActionService actionService;
+    //本地异常日志记录对象
+    private static final Logger logger = LoggerFactory.getLogger(SystemLogAspect.class);
+
+    //Controller层切点
+    @Pointcut("@annotation(com.znsd.sportslog.annotation.SystemControllerLog)")
+    public void controllerAspect() {
+    }
+
+    /**
+     * @Description 前置通知  用于拦截Controller层记录用户的操作
+     */
+
+    @Before("controllerAspect()")
+    public void doBefore(JoinPoint joinPoint) {
+        System.out.println("==============前置通知开始==============");
+    }
+
+    @AfterReturning(returning = "rvt", pointcut = "@annotation(com.znsd.sportslog.annotation.SystemControllerLog)")
+    public void AfterExec(JoinPoint joinPoint, Object rvt) {
+        HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
+        HttpSession session = request.getSession();
+        UserDomain user = (UserDomain) session.getAttribute("user");
+        String ip = IpUtil.getIpAddr(request);
+
+        try {
+            String fangfa = (joinPoint.getTarget().getClass().getName() + "." + joinPoint.getSignature().getName());
+            String miaoShu = getControllerMethodDescription(joinPoint);
+            StringBuilder requestLog = new StringBuilder();
+            OperationType operationType = getControllerMethodOperationType(joinPoint);
+            //*========控制台输出=========*//
+            System.out.println("==============后置置通知开始==============");
+            System.out.println("请求方法" + fangfa);
+            System.out.println("方法描述：" + miaoShu);
+            System.out.println("方法类型" + operationType);
+//            System.out.println("请求人："+user.getUsername());
+            System.out.println("请求ip：" + ip);
+
+            Signature signature = joinPoint.getSignature();
+            String[] paramNames = ((MethodSignature) signature).getParameterNames();
+            Object[] paramValues = joinPoint.getArgs();
+            int paramLength = null == paramNames ? 0 : paramNames.length;
+            if (paramLength == 0) {
+                requestLog.append("请求参数 = {} ");
+            } else {
+                requestLog.append("请求参数 = [");
+                for (int i = 0; i < paramLength - 1; i++) {
+                    requestLog.append(paramNames[i]).append("=").append(JSONObject.toJSONString(paramValues[i])).append(",");
+                }
+                requestLog.append(paramNames[paramLength - 1]).append("=").append(JSONObject.toJSONString(paramValues[paramLength - 1])).append("]");
+            }
+            System.out.println("参数" + requestLog);
+            System.out.println("返回值" + rvt);
+
+            //uuid
+            String uuid = UUID.randomUUID().toString().replaceAll("-", "");
+            System.out.println("uuid:" + uuid);
+
+            //封装数据javabea
+            SystemLogDomain action = new SystemLogDomain();
+            action.setId(uuid);
+            //描述
+            action.setBewrite(miaoShu);//描述
+            //ip
+            action.setIp(ip);
+            //用户id
+            //action.setId(user.getId());
+            action.setUserid("Test");
+
+            //参数
+            action.setParameter(requestLog.toString());
+            //类型
+            action.setType(operationType.getValue());
+            //返回值
+            if (rvt.toString().length() > 250) {
+                action.setLogreturn(rvt.toString().substring(0, 250));
+            } else {
+                action.setLogreturn(rvt.toString());
+            }
+            //保存数据库
+            actionService.add(action);
+
+        } catch (Exception e) {
+            //记录本地异常日志
+            logger.error("==前置通知异常==");
+            logger.error("异常信息：{}", e.getMessage());
+        }
+
+    }
+
+    /**
+     * @Description 获取注解中对方法的描述信息 用于Controller层注解
+     */
+    public static String getControllerMethodDescription(JoinPoint joinPoint) throws Exception {
+        String targetName = joinPoint.getTarget().getClass().getName();
+        String methodName = joinPoint.getSignature().getName();//目标方法名
+        Object[] arguments = joinPoint.getArgs();
+        Class targetClass = Class.forName(targetName);
+        Method[] methods = targetClass.getMethods();
+        String description = "";
+        for (Method method : methods) {
+            if (method.getName().equals(methodName)) {
+                Class[] clazzs = method.getParameterTypes();
+                if (clazzs.length == arguments.length) {
+                    description = method.getAnnotation(SystemControllerLog.class).description();
+                    break;
+                }
+            }
+        }
+        return description;
+    }
+
+    public static OperationType getControllerMethodOperationType(JoinPoint joinPoint) throws Exception {
+        String targetName = joinPoint.getTarget().getClass().getName();
+        String methodName = joinPoint.getSignature().getName();//目标方法名
+        Object[] arguments = joinPoint.getArgs();
+        Class targetClass = Class.forName(targetName);
+        Method[] methods = targetClass.getMethods();
+        OperationType operationType = OperationType.UNKNOWN;
+        for (Method method : methods) {
+            if (method.getName().equals(methodName)) {
+                Class[] clazzs = method.getParameterTypes();
+                if (clazzs.length == arguments.length) {
+                    operationType = method.getAnnotation(SystemControllerLog.class).operationType();
+                    break;
+                }
+            }
+        }
+        return operationType;
+    }
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportsvideo.dao.UserVideoDao">
+
+    <select id="getLikeNumber" parameterType="java.lang.String" resultType="int">
+
+        SELECT count(*) FROM user_db u JOIN video_db vc ON vc.userid=u.id JOIN user_video_db uv ON uv.videoId=vc.id
+        WHERE u.id=#{userId} and `like`=1
+    </select>
+    <select id="getCollectNumber" parameterType="java.lang.String" resultType="int">
+        SELECT count(*) FROM user_db u JOIN video_db vc ON vc.userid=u.id JOIN user_video_db uv ON uv.videoId=vc.id
+        WHERE u.id=#{userId} and collect=1
+    </select>
+
+    <select id="getAloneField" parameterType="com.znsd.sportsbean.user.UserVideoDomain" resultType="int">
+        SELECT count(*) FROM user_video_db uv left JOIN video_db vc ON uv.videoId=vc.id WHERE uv.videoId=#{videoId}
+        <choose>
+            <when test="like != null">
+                and `like`=#{like}
+            </when>
+            <when test="collect  != null">
+                and collect=#{collect}
+            </when>
+            <when test="score  != null">
+                and score=#{score}
+            </when>
+        </choose>
+    </select>
+
+    <select id="getAloneVideoUserLook" resultType="int">
+        SELECT count(*) FROM user_video_db where videoId=#{videoId};
+    </select>
+    <select id="getAloneVideoUserLookGroup" resultType="int">
+        SELECT count(distinct userId) FROM user_video_db WHERE videoId=#{videoId};
+    </select>
+
+    <select id="getAloneVideoScore" resultType="java.lang.Double">
+        select sum(score) from user_video_db where videoId=#{videoId};
+    </select>
+
+    <select id="getLSC" resultType="com.znsd.sportsbean.user.UserVideoDomain">
+        SELECT SUM(`like`) AS `like` ,SUM(score) AS score ,SUM(collect) AS collect FROM user_video_db WHERE
+        videoId=#{videoId}
+    </select>
+
+    <select id="getUserAloneVideo" resultType="com.znsd.sportsbean.user.UserVideoDomain">
+        select * from user_video_db where userId=#{userId} and videoId=#{videoId};
+    </select>
+
+
+    <insert id="addUserLikeAndCollectAndScore" parameterType="com.znsd.sportsbean.user.UserVideoDomain">
+        insert into user_video_db(id,userId,videoId,score,`like`,collect) values
+        (#{id},#{userId},#{videoId},#{score},#{like},#{collect})
+    </insert>
+
+    <update id="updateUserLikeOrCollectOrScore" parameterType="com.znsd.sportsbean.user.UserVideoDomain">
+        update user_video_db
+        <trim prefix="set" suffixOverrides=",">
+            <if test="like !=null">
+                `like`=#{like},
+            </if>
+            <if test="collect !=null">
+                `collect`=#{collect},
+            </if>
+            <if test="score !=null">
+                `score`=#{score},
+            </if>
+        </trim>
+        where userId=#{userId} and videoId=#{videoId}
+
+    </update>
+
+    <update id="updateUserByUserId" parameterType="com.znsd.sportsbean.user.UserDomain">
+        update user_db
+        <trim prefix="set" suffixOverrides=",">
+            <if test="integral!=null">
+                integral=#{integral},
+            </if>
+            <if test="money !=null">
+                money=#{money},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+
+    <select id="getUserById" resultType="com.znsd.sportsbean.user.UserDomain">
+        select * from user_db where id=#{id}
+    </select>
+</mapper>

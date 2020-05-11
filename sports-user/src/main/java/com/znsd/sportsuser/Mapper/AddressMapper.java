@@ -1,0 +1,29 @@
+package com.znsd.sportsuser.Mapper;
+
+import com.znsd.sportsbean.user.UserAddressDomain;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Mapper
+@Repository
+public interface AddressMapper {
+
+    //添加
+    boolean addAddress(UserAddressDomain userAddressDomain);
+
+
+    // 查询
+    List<UserAddressDomain> queryAddress(String userid);
+
+
+    // 修改
+    boolean updateAddress(int id, String address);
+
+
+    // 删除
+    boolean deleteAddress(int id);
+
+    public UserAddressDomain queryId(int addressId);
+}

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Simulor - Responsive Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- App favicon -->
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.css}">
+    <script th:src="@{/bootstrap/js/jquery.min.js}"></script>
+    <script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+
+    <script th:src="@{/layui/layui.js}"></script>
+    <link rel="shortcut icon" th:href="@{/assets/images/favicon.ico}">
+
+    <!-- App css -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/icons.min.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/app.min.css}" rel="stylesheet" type="text/css"/>
+    <!-- App js -->
+    <script th:src="@{/js/vendor.js}"></script>
+    <script th:src="@{/js/app.js}"></script>
+    <style>
+
+        .thumbnail {
+            height: 450px;
+            width: 100%;
+            border: 0px;
+            padding: 0px;
+
+
+        }
+
+        #imgss {
+            margin-left: -15px;
+            height: 230px;
+            width: 450px;
+
+
+        }
+
+        .caption {
+
+            height: 150px;
+            width: 100%;
+            position: relative
+        }
+
+        #a2 {
+            position: absolute;
+
+            bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left-side-menu">
+
+        <div class="slimscroll-menu">
+
+            <!-- LOGO -->
+            <a href="index.html" class="logo text-center mb-4">
+                        <span class="logo-lg">
+                            <img th:src="@{assets/images/logo.png}" alt="" height="20">
+                        </span>
+                <span class="logo-sm">
+                            <img th:src="@{/assets/images/logo-sm.png}" alt="" height="24">
+                        </span>
+            </a>
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+
+                <ul class="metismenu" id="side-menu">
+
+                    <li class="menu-title">Navigation</li>
+
+
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-layers"></i>
+                            <span> Components </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li>
+                                <a href="/addVideoHtml">上传视频</a>
+                            </li>
+                            <li>
+                                <a href="/dataCenterHtml">数据中心</a>
+                            </li>
+                            <li>
+                                <a href="/commonAdminHtml">评论管理</a>
+                            </li>
+                            <li>
+                                <a href="/moneyAdminHtml">收益管理</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="/videoAdminHtml">
+                            <i class="fe-type"></i>
+                            <span>我的稿件 </span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript: void(0);">
+                            <i class="fe-bookmark"></i>
+                            <span class="badge badge-secondary float-right">Hot</span>
+                            <span> Forms </span>
+                        </a>
+                        <ul class="nav-second-level" aria-expanded="false">
+                            <li>
+                                <a href="form-elements.html">General Elements</a>
+                            </li>
+                            <li>
+                                <a href="form-advanced.html">Advanced Form</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+            </div>
+            <!-- End Sidebar -->
+
+            <div class="clearfix"></div>
+
+        </div>
+        <!-- Sidebar -left -->
+
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+            <!-- Topbar Start -->
+            <div class="navbar-custom">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box">
+                            <div class="page-title-right">
+                                <ol class="breadcrumb m-0">
+                                    <li class="breadcrumb-item" id="ed"><a
+                                            th:href="@{'findUserVideoListStatus?status='+1}">已审核</a></li>
+                                    <li class="breadcrumb-item active" id="ing"><a
+                                            th:href="@{'findUserVideoListStatus?status='+0}">未审核</a></li>
+                                </ol>
+                            </div>
+                            <h4 class="page-title"><a th:href="@{findVideoList}">全部稿件</a></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end Topbar -->
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <!-- start page title -->
+
+                <hr class="layui-bg-gray">
+                <br> <br>
+                <div class="container">
+                    <div class="row" id="rowss">
+                        <div class="col-sm-6 col-md-6" id="gj" th:each="video : ${videoDomain}">
+                            <p th:if="${video==null}">无稿件，赶快投稿,加油</p>
+                            <div class="thumbnail">
+                                <div class="col-md-5">
+                                    <img th:src="@{'http://192.168.1.10:7888/images/'+${video.image}}" id="imgss">
+                                </div>
+                                <div class="caption col-md-10">
+                                    <h3>视频标题：[[${video.name}]]</h3>
+                                    <p>点赞:[[${video.totalLike}]]</p>
+                                    <p>收藏:[[${video.totalCollect}]]</p>
+                                    <P>用户观看量：[[${video.totalBrowse}]]</P>
+                                    <p>上传时间:[[${video.times}]]</p>
+                                    <p><a th:href="@{'findVideoById?videoId='+${video.id}}" th:value="${video.id}"
+                                          class="btn btn-primary" role="button">编辑</a> <a
+                                            th:href="@{'deleteVideo?id='+${video.id}}" th:value="${video.id}"
+                                            class="btn btn-primary" role="button">删除</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+
+</body>
+<script>
+
+</script>
+</html>

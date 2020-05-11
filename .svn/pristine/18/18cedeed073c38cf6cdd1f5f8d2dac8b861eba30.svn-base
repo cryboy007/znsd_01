@@ -1,0 +1,84 @@
+package com.znsd.sportscommodity.getType.service.impl;
+
+import com.znsd.sportsbean.commodity.CommodityTypeDomain;
+import com.znsd.sportscommodity.getType.dao.CommodittypeDbDao;
+import com.znsd.sportscommodity.getType.service.CommodittypeDbService;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+/**
+ * (CommodittypeDb)表服务实现类
+ *
+ * @author makejava
+ * @since 2020-05-04 08:51:29
+ */
+@Service
+public class CommodittypeDbServiceImpl implements CommodittypeDbService {
+    @Resource
+    private CommodittypeDbDao commodittypeDbDao;
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param id 主键
+     * @return 实例对象
+     */
+    @Override
+    public CommodityTypeDomain queryById(String id) {
+        return this.commodittypeDbDao.queryById(id);
+    }
+
+    /**
+     * 查询多条数据
+     *
+     * @param offset 查询起始位置
+     * @param limit 查询条数
+     * @return 对象列表
+     */
+    @Override
+    public List<CommodityTypeDomain> queryAllByLimit(int offset, int limit) {
+        return this.commodittypeDbDao.queryAllByLimit(offset, limit);
+    }
+
+    /**
+     * 新增数据
+     *
+     * @param commodityTypeDomain 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public CommodityTypeDomain insert(CommodityTypeDomain commodityTypeDomain) {
+        this.commodittypeDbDao.insert(commodityTypeDomain);
+        return commodityTypeDomain;
+    }
+
+    /**
+     * 修改数据
+     *
+     * @param commodityTypeDomain 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public CommodityTypeDomain update(CommodityTypeDomain commodityTypeDomain) {
+        this.commodittypeDbDao.update(commodityTypeDomain);
+        return this.queryById(commodityTypeDomain.getCommodityid());
+    }
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param id 主键
+     * @return 是否成功
+     */
+    @Override
+    public boolean deleteById(String id) {
+        return this.commodittypeDbDao.deleteById(id) > 0;
+    }
+
+    @Override
+    public List<CommodityTypeDomain> queryAll() {
+        return this.commodittypeDbDao.queryAll();
+    }
+}

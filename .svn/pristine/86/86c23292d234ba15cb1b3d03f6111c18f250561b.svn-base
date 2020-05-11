@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportsuser.Mapper.PersonalHobbyMapper">
+
+    <!-- 订单 -->
+    <select id="Order" parameterType="String" resultType="OrderDomain">
+        select * from order_db where userid = #{userid};
+    </select>
+
+    <!-- 视频记录 -->
+    <select id="sBrowse" parameterType="String" resultType="VideoHistoryDomain">
+        select * from videohistory_db where userid = #{userid};
+    </select>
+
+    <!-- 商品记录 -->
+    <select id="productBrowsing" parameterType="String" resultType="CommodityHistoryDomain">
+        select * from commodityhistory_db where userid = #{userid};
+    </select>
+
+    <!-- 我订阅的视频 -->
+    <select id="querySubscription" resultMap="OneAndTwo">
+        select s.userid,v.* from subscribe_db s,video_db v
+        where s.userid = #{userid}
+        and s.collid = v.collId;
+    </select>
+
+    <resultMap id="OneAndTwo" type="SubscribeDomain">
+        <result property="userId" column="userid"/>
+        <result property="collId" column="collid"/>
+        <collection property="videoDomain" ofType="VideoDomain">
+            <result property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="video" column="video"/>
+            <result property="collId" column="collId"/>
+            <result property="statu" column="statu"/>
+        </collection>
+    </resultMap>
+
+
+    <!-- 我的购物车 -->
+    <select id="shopCat" resultMap="queryshop">
+        select s.id sid, s.userid, s.commodityid, s.number,c.id cid, c.name , c.bewrite, c.price, c.inventory, c.sales, c.image, c.sum, c.typeid
+        from shoppingcart_db s,commodity_db c
+        where s.userid = #{userid}
+        and s.commodityid = c.id
+    </select>
+
+    <resultMap id="queryshop" type="com.znsd.sportsbean.commodity.ShoppingDomain">
+        <result property="id" column="sid"/>
+        <result property="userId" column="userid"/>
+        <result property="commodityid" column="commodityid"/>
+        <result property="number" column="number"/>
+        <collection property="list"  ofType="com.znsd.sportsbean.commodity.CommodityDomain">
+            <result property="id" column="cid"/>
+            <result property="name" column="name"/>
+            <result property="bewrite" column="bewrite"/>
+            <result property="price" column="price"/>
+            <result property="inventory" column="inventory"/>
+            <result property="sales" column="sales"/>
+            <result property="image" column="image"/>
+            <result property="sum" column="sum"/>
+            <result property="typeId" column="typeid"/>
+
+        </collection>
+    </resultMap>
+
+
+</mapper>

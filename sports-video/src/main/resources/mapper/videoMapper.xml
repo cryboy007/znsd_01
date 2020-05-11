@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportsvideo.dao.VideoDao">
+
+    <insert id="insertVideo" parameterType="com.znsd.sportsbean.video.VideoDomain">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select replace(uuid(), '-', '')
+        </selectKey>
+        insert into video_db(id,name,video,`dec`,typeId,image,price,integral,userid,status)
+        values(#{id},#{name},#{video},#{dec},#{typeId},#{image},#{price},#{integral},#{userId},0)
+    </insert>
+
+    <update id="updateVideo" parameterType="com.znsd.sportsbean.video.VideoDomain">
+        update video_db
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null">
+                name=#{name},
+            </if>
+            <if test="integral!=null">
+                integral=#{integral},
+            </if>
+            <if test="price!=null">
+                price=#{price},
+            </if>
+            <if test="dec!=null">
+                `dec`=#{dec},
+            </if>
+            <if test="typeId!=null">
+                `typeId`=#{typeId},
+            </if>
+
+        </trim>
+        where id=#{id}
+    </update>
+    <delete id="deleteVideo" parameterType="java.lang.String">
+        DELETE v,u,c,h FROM video_db v LEFT JOIN `user_video_db` u ON v.id=u.videoId LEFT JOIN `videocomment_db` c ON
+        v.id=c.videoId LEFT JOIN `videohistory_db` h ON v.id=h.videoId WHERE v.id=#{id}
+    </delete>
+
+    <!-- <select id="getAllVideoById" parameterType="java.lang.String" resultType="com.znsd.sportsbean.video.VideoDomain">
+         select * from video_db where collid=#{collId}
+     </select>
+ -->
+</mapper>

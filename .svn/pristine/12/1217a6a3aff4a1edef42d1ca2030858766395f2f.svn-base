@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!-- configuration 核心配置文件 -->
+<configuration>
+
+    <!-- 日志 -->
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+    </settings>
+
+    <!-- 给实体类起别名 -->
+    <!-- 当实体类较少时使用 可DIY -->
+
+    <!-- 当实体类较多时使用 可使用注解 Alias 在实体类中定义别名 -->
+    <!--<typeAliases>
+        <package name="com.lxit.com.lxit.pojo"/>
+    </typeAliases>-->
+
+    <!-- 环境搭配 -->
+    <environments default="development">
+        <environment id="development">
+            <!-- 事务管理 -->
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://192.168.1.10:3306/sports_online?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=GMT"/>
+                <property name="username" value="group1"/>
+                <property name="password" value="group1"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 每一个 Mapper.xml 都需要在 Mybatis 核心配置文件中注册 -->
+</configuration>

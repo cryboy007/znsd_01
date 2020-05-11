@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.znsd.sportscommodity.commodity.dao.CommodityDbDao">
+
+    <resultMap type="com.znsd.sportsbean.commodity.CommodityDomain" id="CommodityDbMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="bewrite" column="bewrite" jdbcType="VARCHAR"/>
+        <result property="price" column="price" jdbcType="NUMERIC"/>
+        <result property="inventory" column="inventory" jdbcType="INTEGER"/>
+        <result property="sales" column="sales" jdbcType="INTEGER"/>
+        <result property="image" column="image" jdbcType="VARCHAR"/>
+        <result property="sum" column="sum" jdbcType="INTEGER"/>
+        <result property="typeId" column="typeid" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="CommodityDbMap">
+        select
+          id, name, bewrite, price, inventory, sales, image, sum, typeid
+        from sports_online.commodity_db
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="CommodityDbMap">
+        select
+          id, name, bewrite, price, inventory, sales, image, sum, typeid
+        from sports_online.commodity_db
+
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="CommodityDbMap">
+        select
+          id, name, bewrite, price, inventory, sales, image, sum, typeid
+        from sports_online.commodity_db
+        <where>
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="bewrite != null and bewrite != ''">
+                and bewrite = #{bewrite}
+            </if>
+            <if test="price != null">
+                and price = #{price}
+            </if>
+            <if test="inventory != null">
+                and inventory = #{inventory}
+            </if>
+            <if test="sales != null">
+                and sales = #{sales}
+            </if>
+            <if test="image != null and image != ''">
+                and image = #{image}
+            </if>
+            <if test="sum != null">
+                and sum = #{sum}
+            </if>
+            <if test="typeid != null and typeid != ''">
+                and typeid = #{typeId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into sports_online.commodity_db
+        values (#{id},#{name}, #{bewrite}, #{price}, #{inventory}, #{sales}, #{image}, #{sum}, #{typeId});
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update commodity_db
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="bewrite != null and bewrite != ''">
+                bewrite = #{bewrite},
+            </if>
+            <if test="price != null">
+                price = #{price},
+            </if>
+            <if test="inventory != null">
+                inventory = #{inventory},
+            </if>
+            <if test="sales != null">
+                sales = #{sales},
+            </if>
+            <if test="image != null and image != ''">
+                image = #{image},
+            </if>
+            <if test="sum != null">
+                sum = #{sum},
+            </if>
+            <if test="typeId != null and typeId != ''">
+                typeid = #{typeId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from sports_online.commodity_db where id = #{id}
+    </delete>
+
+    <select id="querycommodityDomain" resultType="com.znsd.sportsbean.commodity.CommodityAndTypeDomain">
+        select
+            c.*,t.*
+        from commodity_db c ,commodittype_db t where c.typeid=t.id
+    </select>
+
+    <select id="querycommodityTypeDomainByLimit" resultType="com.znsd.sportsbean.commodity.CommodityAndTypeDomain">
+        select
+            c.*,t.*
+        from commodity_db c ,commodittype_db t where c.typeid=t.id
+    </select>
+
+
+<!--  重制版-->
+    <select id="querycommodityTypeDomainByLimit2" resultType="com.znsd.sportsbean.commodity.CommodityAndTypeDomain">
+        select
+            c.*,t.*
+        from commodity_db c ,commodittype_db t where c.typeid=t.id
+    </select>
+
+
+    <!--
+    <resultMap id="queryCommodity" type="com.znsd.sportsbean.commodity.CommodityTypeDomain">
+        <result property="commodityid" column="id"/>
+        <result property="typeName" column="typename"/>
+            <result property="id" column="id"/>
+            <result property="name" column="name"/>
+            <result property="bewrite" column="bewrite"/>
+            <result property="price" column="price" />
+            <result property="inventory" column="inventory"/>
+            <result property="sales" column="sales"/>
+            <result property="image" column="image"/>
+            <result property="sum" column="sum"/>
+            <result property="typeId" column="typeid"/>
+        </association>
+       &lt;!&ndash; <result property="id" column="id"/>
+        <result property="name" column="tname"/>
+        <result property="bewrite" column="bewrite"/>
+        <result property="price" column="price" />
+        <result property="inventory" column="inventory"/>
+        <result property="sales" column="sales"/>
+        <result property="image" column="image"/>
+        <result property="sum" column="sum"/>&ndash;&gt;
+    </resultMap>-->
+
+    <select id="queryName" resultMap="CommodityDbMap" >
+        select * from commodity_db where name like '%${name}%'
+    </select>
+
+
+    <select id="queryTypeCommodity" resultType="com.znsd.sportsbean.commodity.CommodityAndTypeDomain">
+        select
+            c.*,t.*
+        from commodity_db c ,commodittype_db t where c.typeid=t.id and t.id=#{typeId}
+    </select>
+
+
+    <select id="getNameLimit" resultType="com.znsd.sportsbean.commodity.CommodityAndTypeDomain">
+        select
+            c.*,t.*
+        from commodity_db c ,commodittype_db t where c.typeid=t.id and name like '%${name}%'
+    </select>
+
+    <select id="queryCommodityAndType" resultType="com.znsd.sportsbean.commodity.CommodityAndTypeDomain">
+         select
+            c.*,t.*
+        from commodity_db c ,commodittype_db t where c.typeid=t.id and c.id=#{id}
+    </select>
+    <insert id="insertVideo"  >
+        insert into viderAndCommodity_db values (#{commodityid},#{videoid})
+    </insert>
+</mapper>

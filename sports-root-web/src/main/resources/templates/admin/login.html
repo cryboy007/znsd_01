@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>管理员登陆 - QAdmin后台模板</title>
+    <link rel="stylesheet" href="./static/common/layui/css/layui.css">
+    <link rel="stylesheet" href="./static/admin/css/login.css">
+    <script src="./static/common/jquery-3.3.1.min.js"></script>
+    <script src="./static/common/layui/layui.js"></script>
+    <script src="./static/admin/js/jquery.cookie.js"></script>
+</head>
+
+<body id="login">
+<div class="login">
+    <h2>健身平台后台中心</h2>
+    <form class="layui-form" method="post" target="_blank" action="">
+        <div class="layui-form-item">
+            <input type="username" name="username" placeholder="账号" class="layui-input">
+            <i class="layui-icon input-icon">&#xe66f;</i>
+        </div>
+        <div class="layui-form-item">
+            <input type="password" name="password" placeholder="密码" class="layui-input">
+            <i class="layui-icon input-icon">&#xe673;</i>
+        </div>
+        <div class="layui-form-item">
+            <input type="checkbox" name="box" lay-skin="primary" title="记住密码" checked="">
+            <!-- <a class="back" href="javascript:;"  style="margin-top: 10px">忘记密码</a> -->
+        </div>
+        <div class="layui-form-item">
+            <button style="width: 100%" class="layui-btn" lay-submit lay-filter="login">立即登录</button>
+
+        </div>
+    </form>
+
+    <script>
+        layui.use('form', function () {
+            var form = layui.form,
+                layer = layui.layer,
+                $ = layui.jquery;
+            form.on('submit(login)', function (data) {
+                $.ajax({
+                    type: "post",
+                    url: "/server/user/login",
+                    data: data.field,
+                    success: function (response) {
+                        if (response.id != null || response.id != undefined || response.id == "" || response.id == 0) {
+                            if (response.typeid != "管理员") {
+                                layer.msg("你没有管理员权限!");
+                            } else {
+                                $.cookie("user", response.username, {expires: 7})
+                                $.cookie("admin", response.typeid, {expires: 7})
+                                layer.msg("登录成功!");
+                                layer.load({
+                                    shade: 0.5,
+                                    time: 0,
+                                });
+                                setTimeout(function () {
+                                    window.location.href = 'index.html';
+                                }, 1000);
+                            }
+                        } else {
+                            layer.msg("账号或用户名错误!");
+                        }
+                    }, error: function (error) {
+                        console.log(error);
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+</div>
+</body>
+
+</html>
